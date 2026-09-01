@@ -5,6 +5,7 @@ import { AboutPage } from "./pages/AboutPage";
 import { ProjectPage } from "./pages/ProjectPage";
 import { DemoPage } from "./pages/DemoPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { useRouteScroll } from "./hooks/useRouteScroll";
 import { LANGUAGES } from "./i18n/i18n.types";
 import { DEMO_SEGMENT, ROUTE_SEGMENTS, detectLanguage } from "./routes/routes";
 
@@ -15,6 +16,11 @@ import { DEMO_SEGMENT, ROUTE_SEGMENTS, detectLanguage } from "./routes/routes";
  */
 export function App() {
   const preferred = detectLanguage();
+
+  // Sta qui e non in SiteLayout perché le landing dimostrative vivono fuori da
+  // quel contenitore: lì dentro non sarebbe mai stato eseguito, e le demo si
+  // aprivano nel punto in cui il browser le lasciava.
+  useRouteScroll();
 
   return (
     <Routes>

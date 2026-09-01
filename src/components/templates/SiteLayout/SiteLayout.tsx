@@ -6,7 +6,6 @@ import { Header } from "../../organisms/Header";
 import { PageTransition } from "../../organisms/PageTransition";
 import { TitleTransitionProvider } from "../../../context/TitleTransitionContext";
 import { I18nProvider, useI18n } from "../../../i18n";
-import { useRouteScroll } from "../../../hooks/useRouteScroll";
 import { SECTION_IDS } from "../../../hooks/useNavItems";
 import styles from "./SiteLayout.module.css";
 import type { SiteLayoutProps } from "./SiteLayout.types";
@@ -21,15 +20,13 @@ function LayoutShell() {
   const previousPath = useRef(pathname);
   const [announcement, setAnnouncement] = useState("");
 
-  useRouteScroll();
-
   // Cambio pagina in una SPA: niente ricaricamento, quindi nessun annuncio
   // automatico. Il focus torna al contenuto e la regione live legge il titolo.
   useEffect(() => {
     if (previousPath.current === pathname) return;
     previousPath.current = pathname;
 
-    // Lo scroll lo gestisce `useRouteScroll`: il focus non deve spostarlo.
+    // Lo scroll lo gestisce `useRouteScroll` in App: il focus non deve spostarlo.
     mainRef.current?.focus({ preventScroll: true });
     setAnnouncement(format(t.meta.routeAnnouncement, { page: document.title }));
   }, [pathname, format, t]);
