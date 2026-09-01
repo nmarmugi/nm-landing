@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { usePrefersReducedMotion } from "../../../hooks/usePrefersReducedMotion";
 import { cx } from "../../../utils/cx";
 import styles from "./MediaSlot.module.css";
 import type { MediaSlotProps } from "./MediaSlot.types";
@@ -35,14 +34,13 @@ export function MediaSlot({
   className,
   style,
 }: MediaSlotProps) {
-  const reducedMotion = usePrefersReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
   /**
    * Un video "pigro" non scarica nulla finché non serve: in home ce ne sono
    * cinque, e partire tutti insieme vorrebbe dire decine di megabyte prima
    * ancora che l'utente scorra.
    */
-  const lazyVideo = Boolean(video) && loading === "lazy" && !reducedMotion;
+  const lazyVideo = Boolean(video) && loading === "lazy";
 
   useEffect(() => {
     const element = videoRef.current;
@@ -81,8 +79,9 @@ export function MediaSlot({
 
   if (video) {
     // Muto e in ciclo: un video che parte da solo con l'audio è la cosa che
-    // fa chiudere la pagina. Con movimento ridotto non parte affatto e
-    // compaiono i comandi, così resta comunque guardabile.
+    // fa chiudere la pagina. Parte sempre, anche con la riduzione del
+    // movimento attiva: sono registrazioni silenziose di una pagina che
+    // scorre, e senza partenza automatica l'anteprima non racconta niente.
     return (
       <div className={classes} style={inlineStyle}>
         <video
@@ -93,9 +92,8 @@ export function MediaSlot({
           aria-label={alt}
           muted
           playsInline
-          autoPlay={!reducedMotion && !lazyVideo}
-          loop={!reducedMotion}
-          controls={reducedMotion}
+          autoPlay={!lazyVideo}
+          loop
           preload={lazyVideo ? "none" : "metadata"}
         />
       </div>
