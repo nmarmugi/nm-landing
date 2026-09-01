@@ -1,0 +1,51 @@
+.hero {
+  padding-block: var(--space-30) var(--space-30);
+}
+
+.title {
+  margin: 0;
+}
+
+/* Ogni riga è una finestra: i caratteri entrano da sotto senza sbordare. */
+.lineMask {
+  display: block;
+  overflow: hidden;
+  /* Un filo di respiro per non tagliare le discendenti durante l'animazione. */
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.line {
+  display: block;
+}
+
+.muted {
+  color: var(--color-ink-40);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-22);
+  margin-top: var(--space-26);
+}
+
+.intro {
+  max-width: 460px;
+  color: var(--color-ink-70);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-block: var(--space-80) var(--space-56);
+  }
+
+  .meta {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: var(--space-30) 60px;
+    margin-top: 52px;
+  }
+}

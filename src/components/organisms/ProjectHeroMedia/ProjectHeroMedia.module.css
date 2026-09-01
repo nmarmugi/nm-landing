@@ -1,0 +1,30 @@
+/* Full-bleed: l'immagine esce dai margini di pagina. */
+.frame {
+  overflow: hidden;
+  height: 240px;
+}
+
+/* Con un video l'altezza la decide il file: nessun ritaglio sopra e sotto. */
+.frameNatural {
+  height: auto;
+}
+
+.media {
+  height: 100%;
+  will-change: transform;
+}
+
+.frameNatural .media {
+  height: auto;
+  will-change: auto;
+}
+
+@media (min-width: 768px) {
+  .frame {
+    height: 420px;
+  }
+
+  .frameNatural {
+    height: auto;
+  }
+}

@@ -1,0 +1,48 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+}
+
+.full {
+  font-size: 13px;
+  line-height: 2.2;
+}
+
+.compact {
+  gap: var(--space-8);
+  font-size: var(--fs-mono);
+  line-height: 1.6;
+}
+
+.spaced {
+  margin-top: var(--space-14);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.separator {
+  opacity: 0.5;
+}
+
+.link {
+  display: inline-block;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.link:hover {
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition-duration: 0.01ms;
+  }
+}

@@ -1,0 +1,92 @@
+.row {
+  border-bottom: 1px solid var(--color-line-soft);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-36);
+  padding-block: var(--space-22);
+  padding-inline: var(--gutter);
+  color: var(--color-ink);
+}
+
+.link:focus-visible {
+  outline-offset: -3px;
+}
+
+.index {
+  flex: none;
+  width: 34px;
+  color: var(--color-ink-40);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  /* Colore di riposo: GSAP lo sovrascrive con quickTo al passaggio del cursore. */
+  color: var(--color-ink-45);
+}
+
+.summary {
+  flex: none;
+  /* 200px invece dei 190px del mockup: sotto questa misura la riga di
+     metadati più lunga va a capo. */
+  width: 200px;
+  text-align: right;
+  color: var(--color-ink-55);
+}
+
+.previewSlot {
+  flex: none;
+  width: 128px;
+  height: 76px;
+  pointer-events: none;
+}
+
+.preview {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.active .index {
+  color: var(--color-accent);
+}
+
+/* Stato di riposo garantito anche senza JS: il titolo resta leggibile. */
+@media (hover: none) {
+  .title {
+    color: var(--color-ink);
+  }
+}
+
+/* 768–1199px: niente anteprima inline, i metadati vanno sotto al titolo. */
+@media (max-width: 1199px) {
+  .link {
+    flex-wrap: wrap;
+    gap: var(--space-14) var(--space-22);
+  }
+
+  .previewSlot {
+    display: none;
+  }
+
+  .summary {
+    width: 100%;
+    text-align: left;
+    padding-left: calc(34px + var(--space-22));
+  }
+}
+
+@media (max-width: 767px) {
+  .title {
+    color: var(--color-ink);
+  }
+
+  .summary {
+    padding-left: 0;
+  }
+}

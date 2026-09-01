@@ -1,0 +1,24 @@
+.skipLink {
+  position: fixed;
+  top: var(--space-8);
+  left: var(--space-8);
+  z-index: var(--z-transition);
+  padding: 12px var(--space-18);
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  /* Fuori schermo finché non riceve il focus: resta nell'ordine di tabulazione. */
+  transform: translateY(calc(-100% - var(--space-14)));
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.skipLink:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}

@@ -1,0 +1,966 @@
+/**
+ * Landing "Mare Sedici". Il tema vive tutto qui dentro: la demo non eredita i
+ * token del portfolio, altrimenti sembrerebbe una sua pagina invece del sito di
+ * un cliente.
+ *
+ * Impianto tipografico e struttura vengono dalla skill ui-ux-pro-max
+ * (accoppiata Playfair Display SC + Karla per la ristorazione, pattern
+ * "Trust & Authority + Conversion"). La palette resta quella di mare chiesta
+ * dal committente, non il rosso e oro suggerito dal database.
+ *
+ * Nessuno stato iniziale delle animazioni sta in CSS: senza JS la pagina è già
+ * leggibile e completa, gli stati di partenza li imposta GSAP.
+ */
+.page {
+  --ms-ink: #04121c;
+  --ms-ink-soft: #0a2433;
+  --ms-white: #f2f8f9;
+  --ms-white-70: rgba(242, 248, 249, 0.72);
+  --ms-white-50: rgba(242, 248, 249, 0.5);
+  --ms-line: rgba(242, 248, 249, 0.16);
+  --ms-paper: #f4f1e9;
+  --ms-sea: #8fd6cf;
+  --ms-aqua: #45d6c0;
+  --ms-deep: #0b3c56;
+
+  --ms-display: "Playfair Display SC", Georgia, "Times New Roman", serif;
+  --ms-text: "Karla", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --ms-gutter: 20px;
+  --ms-max: 1240px;
+
+  position: relative;
+  background: var(--ms-ink);
+  color: var(--ms-white);
+  font-family: var(--ms-text);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+/* Grana leggerissima su tutta la pagina: toglie l'aria da render pulito che
+   hanno i fondi piatti. */
+.page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.014) 0 1px,
+      transparent 1px 3px
+    ),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.02) 0 1px, transparent 1px 4px);
+}
+
+.page :where(a, button):focus-visible {
+  outline: 2px solid var(--ms-aqua);
+  outline-offset: 3px;
+}
+
+.page :where(a, button) {
+  cursor: pointer;
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--ms-max);
+  margin-inline: auto;
+  padding-inline: var(--ms-gutter);
+}
+
+/* Etichette piccole: Karla spaziata invece di un terzo font. */
+.label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Header ---------- */
+
+/* La barra si nasconde scendendo e ricompare risalendo: la traslazione la
+   guida GSAP, qui vive solo il fondo. */
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  background: rgba(4, 18, 28, 0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--ms-line);
+  will-change: transform;
+}
+
+.barInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 12px;
+}
+
+.brand {
+  font-family: var(--ms-display);
+  font-size: 19px;
+  letter-spacing: 0.04em;
+}
+
+.brand span {
+  color: var(--ms-aqua);
+}
+
+.barRight {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.barNav {
+  display: none;
+  gap: 22px;
+}
+
+.barNav a {
+  color: var(--ms-white-50);
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.barNav a:hover {
+  color: var(--ms-white);
+}
+
+/* 44px di area toccabile: sotto quella soglia il tocco sbaglia bersaglio. */
+.barPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding-inline: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ms-aqua);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 36px;
+  /* Compensa la barra fissa: il contenuto non le finisce mai sotto. */
+  padding-block: 104px 44px;
+}
+
+.eyebrow {
+  margin: 0 0 22px;
+  color: var(--ms-sea);
+}
+
+/* Titolo riga per riga: le righe sono corte per scelta e non vanno mai a capo
+   da sole. */
+.title {
+  margin: 0;
+  font-family: var(--ms-display);
+  font-size: clamp(40px, 10.5vw, 96px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  text-wrap: nowrap;
+}
+
+.titleLine {
+  display: block;
+  /* Spazio per le discendenti, recuperato con un margine negativo: la maschera
+     taglierebbe le code di g e p. */
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+  overflow: hidden;
+  /* Il reveal ruota i caratteri: senza prospettiva sarebbe un semplice scorrere. */
+  perspective: 600px;
+}
+
+.titleLine > span {
+  display: inline-block;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+.titleAccent {
+  color: var(--ms-aqua);
+}
+
+.lead {
+  margin: 28px 0 0;
+  max-width: 40ch;
+  font-size: clamp(16px, 1.35vw, 18px);
+  line-height: 1.7;
+  color: var(--ms-white-70);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 22px;
+  margin-top: 30px;
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 26px;
+  background: var(--ms-aqua);
+  color: #04121c;
+  font-size: 16px;
+  font-weight: 700;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.primary:hover {
+  background: #6ae3d0;
+  transform: translateY(-2px);
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ms-white-70);
+  border-bottom: 1px solid var(--ms-line);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.textLink:hover {
+  color: var(--ms-white);
+  border-color: var(--ms-aqua);
+}
+
+.heroNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 28px;
+  max-width: 34ch;
+  color: var(--ms-white-50);
+  font-size: 14px;
+}
+
+/* Colonna foto: sborda a destra fuori dal contenitore, così la pagina non
+   sembra costruita dentro una scatola centrata. */
+.heroMedia {
+  position: relative;
+}
+
+/* Logotipo gigante dietro alla foto, che lo scavalca. Decorativo: il nome del
+   locale è già nell'header, qui è solo texture, quindi aria-hidden. */
+.wordmark {
+  position: absolute;
+  left: -14%;
+  top: 8%;
+  z-index: -1;
+  margin: 0;
+  font-family: var(--ms-display);
+  font-size: clamp(88px, 20vw, 260px);
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(143, 214, 207, 0.35);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.shot {
+  position: relative;
+  background: linear-gradient(150deg, #0b3c56 0%, #12667066 48%, #04121c 100%);
+  border: 1px solid var(--ms-line);
+  overflow: hidden;
+}
+
+.shot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    118deg,
+    rgba(242, 248, 249, 0.05) 0 2px,
+    transparent 2px 9px
+  );
+}
+
+.shot::after {
+  content: attr(data-caption);
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ms-white-50);
+}
+
+.heroShot {
+  aspect-ratio: 4 / 5;
+}
+
+.stamp {
+  position: absolute;
+  left: -10px;
+  bottom: 26px;
+  transform: rotate(-6deg);
+  background: var(--ms-paper);
+  color: #04121c;
+  padding: 12px 15px;
+  max-width: 200px;
+  font-size: 13px;
+  line-height: 1.45;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- Lavagna del giorno ---------- */
+
+.board {
+  position: relative;
+  z-index: 2;
+  padding-block: 48px;
+}
+
+.boardCard {
+  position: relative;
+  background: var(--ms-ink-soft);
+  border: 1px solid var(--ms-line);
+  border-left: 3px solid var(--ms-aqua);
+  padding: 26px 22px;
+  max-width: 720px;
+  transform: rotate(-0.6deg);
+}
+
+.boardHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 18px;
+  color: var(--ms-white-50);
+  font-size: 13px;
+}
+
+.boardTitle {
+  margin: 0;
+  font-family: var(--ms-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ms-white);
+}
+
+.boardList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.boardList li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+/* Filetto puntinato tra piatto e prezzo, come sulle lavagne vere. */
+.boardList li::after {
+  content: "";
+  flex: 1;
+  order: 1;
+  border-bottom: 1px dotted var(--ms-line);
+  transform: translateY(-4px);
+}
+
+.boardPrice {
+  order: 2;
+  color: var(--ms-aqua);
+  font-variant-numeric: tabular-nums;
+}
+
+.boardNote {
+  margin: 20px 0 0;
+  color: var(--ms-white-50);
+  font-size: 14px;
+}
+
+/* ---------- Menu su carta ---------- */
+
+.menu {
+  position: relative;
+  z-index: 2;
+  background: var(--ms-paper);
+  color: #14202a;
+}
+
+.menuInner {
+  display: grid;
+  gap: 40px;
+  padding-block: 64px;
+}
+
+.menuIntro h2 {
+  margin: 0 0 18px;
+  font-family: var(--ms-display);
+  font-weight: 400;
+  font-size: clamp(30px, 4.4vw, 44px);
+  line-height: 1.1;
+}
+
+.menuIntro p {
+  margin: 0 0 14px;
+  max-width: 34ch;
+  color: rgba(20, 32, 42, 0.72);
+}
+
+.menuIntro p:last-child {
+  margin-bottom: 0;
+}
+
+.menuGroup + .menuGroup {
+  margin-top: 38px;
+}
+
+.menuGroupTitle {
+  margin: 0 0 4px;
+  color: #6b6152;
+  border-bottom: 1px solid rgba(20, 32, 42, 0.18);
+  padding-bottom: 10px;
+}
+
+.dishes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dish {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(20, 32, 42, 0.1);
+}
+
+.dishName {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.dishPrice {
+  color: var(--ms-deep);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.dishNote {
+  grid-column: 1 / -1;
+  max-width: 48ch;
+  font-size: 15px;
+  color: rgba(20, 32, 42, 0.66);
+}
+
+.menuFoot {
+  margin-top: 26px;
+  font-size: 13px;
+  color: rgba(20, 32, 42, 0.58);
+}
+
+/* ---------- Il locale ---------- */
+
+.about {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 32px;
+  padding-block: 64px;
+}
+
+.aboutTitle {
+  margin: 0 0 22px;
+  font-family: var(--ms-display);
+  font-size: clamp(28px, 4.2vw, 42px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.aboutText p {
+  margin: 0 0 18px;
+  color: var(--ms-white-70);
+  line-height: 1.75;
+}
+
+.aboutText p:last-child {
+  margin-bottom: 0;
+}
+
+.aboutMedia {
+  display: grid;
+  gap: 18px;
+}
+
+/* Formati diversi apposta: due foto identiche in fila sono la firma di un
+   layout messo insieme in fretta. */
+.aboutShotTall {
+  aspect-ratio: 3 / 4;
+}
+
+.aboutShotWide {
+  aspect-ratio: 5 / 3;
+}
+
+/* ---------- Frase a maschera ---------- */
+
+.statement {
+  position: relative;
+  z-index: 2;
+  padding-block: 72px;
+}
+
+.statementText {
+  margin: 0;
+  max-width: 20ch;
+  font-family: var(--ms-display);
+  font-size: clamp(28px, 5vw, 58px);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+/* Le parole partono smorzate e si accendono man mano che si scorre: il colore
+   è l'unica cosa che cambia, il testo è leggibile in ogni istante. */
+.statementWord {
+  color: var(--ms-white);
+}
+
+.statementWho {
+  display: block;
+  margin-top: 26px;
+  color: var(--ms-white-50);
+  font-size: 13px;
+}
+
+/* ---------- Galleria orizzontale ---------- */
+
+.gallery {
+  position: relative;
+  z-index: 2;
+  padding-block: 48px 64px;
+  overflow: hidden;
+}
+
+.galleryHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 20px;
+  margin-bottom: 26px;
+  color: var(--ms-white-50);
+  font-size: 14px;
+}
+
+.galleryTitle {
+  margin: 0;
+  font-family: var(--ms-display);
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 400;
+  color: var(--ms-white);
+}
+
+/* Su mobile è una striscia che si trascina col dito, con aggancio: il pin
+   qui litigherebbe con lo scorrimento nativo. */
+.galleryTrack {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+  scrollbar-width: thin;
+}
+
+.galleryItem {
+  flex: 0 0 78%;
+  scroll-snap-align: start;
+  aspect-ratio: 4 / 5;
+}
+
+/* ---------- Recensioni ---------- */
+
+/* La prova sociale sta prima dell'invito a prenotare: è l'ordine del pattern
+   "Trust & Authority + Conversion". */
+.reviews {
+  position: relative;
+  z-index: 2;
+  padding-block: 56px;
+  border-top: 1px solid var(--ms-line);
+}
+
+.reviewsHead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px 20px;
+  margin-bottom: 30px;
+  color: var(--ms-white-50);
+  font-size: 14px;
+}
+
+.reviewsTitle {
+  margin: 0;
+  font-family: var(--ms-display);
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 400;
+  color: var(--ms-white);
+}
+
+.reviewList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 22px;
+}
+
+.review {
+  border-top: 1px solid var(--ms-line);
+  padding-top: 20px;
+}
+
+.reviewText {
+  margin: 0 0 14px;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.reviewWho {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  color: var(--ms-white-50);
+  font-size: 13px;
+}
+
+.reviewStars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 12px;
+  color: var(--ms-aqua);
+}
+
+.star {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  stroke: none;
+}
+
+/* ---------- Prenota ---------- */
+
+.book {
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+  color: #04121c;
+  overflow: hidden;
+}
+
+/* Fondo separato dal contenuto: GSAP lo apre in verticale all'ingresso. */
+.bookBackground {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ms-aqua);
+  transform-origin: bottom;
+}
+
+.bookInner {
+  display: grid;
+  gap: 36px;
+  padding-block: 64px;
+}
+
+.bookTitle {
+  margin: 0 0 14px;
+  font-family: var(--ms-display);
+  font-size: clamp(30px, 5vw, 52px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.bookText {
+  margin: 0 0 26px;
+  max-width: 38ch;
+  color: rgba(4, 18, 28, 0.75);
+}
+
+.bookPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  font-family: var(--ms-display);
+  font-size: clamp(28px, 4.6vw, 44px);
+  border-bottom: 2px solid rgba(4, 18, 28, 0.35);
+  transition: border-color 0.2s ease;
+}
+
+.bookPhone:hover {
+  border-color: #04121c;
+}
+
+.bookMail {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 14px;
+  color: rgba(4, 18, 28, 0.75);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hours {
+  display: grid;
+  gap: 14px;
+  margin: 0;
+}
+
+.hours div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(4, 18, 28, 0.22);
+}
+
+.hours dt {
+  font-weight: 700;
+}
+
+.hours dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  color: rgba(4, 18, 28, 0.78);
+}
+
+/* Data di aggiornamento in chiaro: gli orari vecchi sono il difetto numero uno
+   dei siti dei ristoranti. */
+.hoursNote {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: rgba(4, 18, 28, 0.72);
+}
+
+/* ---------- Barra di chiamata su mobile ---------- */
+
+.callBar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 25;
+  display: flex;
+  gap: 10px;
+  padding: 10px var(--ms-gutter) calc(10px + env(safe-area-inset-bottom));
+  background: rgba(4, 18, 28, 0.94);
+  border-top: 1px solid var(--ms-line);
+  backdrop-filter: blur(10px);
+  will-change: transform;
+}
+
+.callBarPhone {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  background: var(--ms-aqua);
+  color: #04121c;
+  font-weight: 700;
+}
+
+.callBarMap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding-inline: 18px;
+  border: 1px solid var(--ms-line);
+  color: var(--ms-white);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--ms-line);
+  /* Spazio per la barra di chiamata, che sta sopra al contenuto. */
+  padding-bottom: 84px;
+}
+
+.footerInner {
+  display: grid;
+  gap: 10px;
+  padding-block: 28px;
+  color: var(--ms-white-50);
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--ms-white);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 700px) {
+  .page {
+    --ms-gutter: 44px;
+  }
+
+  .menuInner {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 52px;
+    padding-block: 88px;
+  }
+
+  .about {
+    grid-template-columns: 1fr 0.85fr;
+    gap: 48px;
+    padding-block: 88px;
+    align-items: start;
+  }
+
+  .aboutMedia {
+    padding-top: 40px;
+  }
+
+  .reviewList {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+
+  .bookInner {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 52px;
+    padding-block: 88px;
+  }
+
+  .footerInner {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  /* Da tablet in su il numero è già nella barra in alto. */
+  .callBar {
+    display: none;
+  }
+
+  .footer {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .barNav {
+    display: flex;
+  }
+
+  /* Da desktop la striscia diventa un nastro mosso da GSAP: niente scroll
+     proprio, ci pensa il pin della sezione, che occupa lo schermo intero. */
+  .gallery {
+    display: grid;
+    align-content: center;
+    gap: 26px;
+    min-height: 100vh;
+    padding-block: 0;
+  }
+
+  .galleryTrack {
+    overflow: visible;
+    scroll-snap-type: none;
+    gap: 24px;
+    padding-bottom: 0;
+    will-change: transform;
+  }
+
+  /* Stessa ragione della foto d'apertura: dentro una sezione bloccata l'altezza
+     non può superare lo schermo. */
+  .galleryItem {
+    flex: 0 0 30vw;
+    aspect-ratio: auto;
+    height: min(58vh, 560px);
+  }
+
+  .hero {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 56px;
+    padding-block: 132px 64px;
+  }
+
+  /* La foto esce dal contenitore verso il bordo destro della finestra. */
+  .heroMedia {
+    margin-right: calc((100vw - var(--ms-max)) / -2 - var(--ms-gutter));
+  }
+
+  /* Sbordando, la colonna diventa larga quanto lo schermo: con una proporzione
+     fissa crescerebbe in altezza a dismisura e spingerebbe il titolo sotto la
+     piega. Da qui in poi comanda l'altezza, non il rapporto. */
+  .heroShot {
+    aspect-ratio: auto;
+    height: min(68vh, 640px);
+  }
+
+  .menuIntro,
+  .aboutText {
+    position: sticky;
+    top: 110px;
+  }
+
+  .aboutShotWide {
+    margin-left: 22%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary:hover {
+    transform: none;
+  }
+}

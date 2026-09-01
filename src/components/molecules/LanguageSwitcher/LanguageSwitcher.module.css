@@ -1,0 +1,44 @@
+.switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  padding: 4px 2px;
+  color: var(--color-ink-40);
+  text-transform: uppercase;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.option:hover {
+  color: var(--color-ink);
+}
+
+.active {
+  color: var(--color-ink);
+}
+
+.separator {
+  color: var(--color-ink-40);
+}
+
+:global(.on-accent) .option {
+  color: var(--color-accent-ink-70);
+}
+
+:global(.on-accent) .option:hover,
+:global(.on-accent) .active,
+:global(.on-accent) .separator {
+  color: var(--color-accent-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .option {
+    transition-duration: 0.01ms;
+  }
+}

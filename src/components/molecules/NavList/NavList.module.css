@@ -1,0 +1,45 @@
+.list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bar {
+  flex-direction: row;
+  gap: var(--space-30);
+  align-items: center;
+}
+
+.overlay {
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+}
+
+.link {
+  display: inline-block;
+  color: var(--color-ink-55);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+/* `page` per le rotte, `location` per la sezione sotto l'header. */
+.bar .link:hover,
+.bar .link[aria-current] {
+  color: var(--color-ink);
+}
+
+.overlay .link {
+  color: var(--color-accent-ink);
+}
+
+.overlay .link:hover,
+.overlay .link[aria-current] {
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link {
+    transition-duration: 0.01ms;
+  }
+}

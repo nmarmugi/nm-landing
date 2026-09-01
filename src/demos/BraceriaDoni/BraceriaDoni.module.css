@@ -1,0 +1,873 @@
+/**
+ * Landing "Braceria Doni". Tema autonomo, come per ogni demo.
+ *
+ * Impianto dalla skill ui-ux-pro-max: stile Brutalism (bordi visibili, angoli
+ * vivi, tipografia pesante, niente ombre morbide), accoppiata Barlow Condensed
+ * + Barlow, pattern "Hero + Features + CTA". La palette del database era blu e
+ * verde: sostituita con osso, nero e brace, che è il colore del prodotto.
+ *
+ * Nessuno stato iniziale delle animazioni sta in CSS: senza JS la pagina è già
+ * leggibile, gli stati di partenza li imposta GSAP.
+ */
+.page {
+  --bd-bone: #f0e9dd;
+  --bd-paper: #fbf7f0;
+  --bd-ink: #14100d;
+  --bd-ink-70: rgba(20, 16, 13, 0.7);
+  --bd-ink-45: rgba(20, 16, 13, 0.45);
+  --bd-ember: #c8340d;
+  --bd-amber: #e08a17;
+
+  --bd-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --bd-text: "Barlow", "Segoe UI", system-ui, sans-serif;
+
+  --bd-gutter: 18px;
+  --bd-max: 1280px;
+  --bd-border: 2px solid var(--bd-ink);
+
+  background: var(--bd-bone);
+  color: var(--bd-ink);
+  font-family: var(--bd-text);
+  font-size: 16px;
+  line-height: 1.55;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+.page :where(a, button) {
+  cursor: pointer;
+}
+
+.page :where(a, button):focus-visible {
+  outline: 3px solid var(--bd-ember);
+  outline-offset: 2px;
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--bd-max);
+  margin-inline: auto;
+  padding-inline: var(--bd-gutter);
+}
+
+.label {
+  font-family: var(--bd-display);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Header ---------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--bd-bone);
+  border-bottom: var(--bd-border);
+}
+
+.barInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-block: 10px;
+}
+
+.brand {
+  font-family: var(--bd-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.brandYear {
+  display: block;
+  font-family: var(--bd-text);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--bd-ink-45);
+}
+
+.barNav {
+  display: none;
+  gap: 24px;
+}
+
+.barNav a {
+  font-family: var(--bd-display);
+  font-size: 17px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s linear;
+}
+
+.barNav a:hover {
+  border-color: var(--bd-ember);
+}
+
+/* Bottone brutalista: bordo netto e ombra piena spostata, nessuna sfumatura. */
+.callButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  background: var(--bd-ember);
+  color: var(--bd-paper);
+  border: var(--bd-border);
+  box-shadow: 4px 4px 0 var(--bd-ink);
+  font-family: var(--bd-display);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition:
+    transform 0.15s linear,
+    box-shadow 0.15s linear;
+}
+
+.callButton:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--bd-ink);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  display: grid;
+  gap: 26px;
+  padding-block: 32px 20px;
+}
+
+.heroEyebrow {
+  display: inline-block;
+  background: var(--bd-ink);
+  color: var(--bd-bone);
+  padding: 5px 10px;
+  margin: 0 0 18px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--bd-display);
+  font-size: clamp(58px, 15vw, 168px);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-wrap: nowrap;
+}
+
+/* Righe corte per scelta: la spezzatura la decidiamo noi, mai il browser. */
+.titleLine {
+  display: block;
+  /* La maschera taglia a filo della cassa: con line-height sotto 1 le
+     discendenti di g e p ci finiscono sotto. Si allarga in basso e si recupera
+     lo spazio con un margine negativo, così l'interlinea resta quella. */
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+  overflow: hidden;
+}
+
+.titleLine > span {
+  display: inline-block;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+.titleEmber {
+  color: var(--bd-ember);
+}
+
+.lead {
+  margin: 24px 0 0;
+  max-width: 42ch;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--bd-ink-70);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+  margin-top: 26px;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--bd-ink);
+  transition: color 0.15s linear;
+}
+
+.textLink:hover {
+  color: var(--bd-ember);
+}
+
+.heroMedia {
+  position: relative;
+}
+
+/* Segnaposto foto: bande di brace, niente gradiente morbido. */
+.shot {
+  position: relative;
+  border: var(--bd-border);
+  background: repeating-linear-gradient(
+      135deg,
+      rgba(20, 16, 13, 0.08) 0 3px,
+      transparent 3px 12px
+    ),
+    linear-gradient(160deg, #3a2016 0%, #7a2f10 55%, #14100d 100%);
+  overflow: hidden;
+}
+
+.shot::after {
+  content: attr(data-caption);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 6px 10px;
+  background: var(--bd-ink);
+  color: var(--bd-bone);
+  font-family: var(--bd-display);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.heroShot {
+  aspect-ratio: 4 / 3;
+}
+
+/* Bollo ruotato appoggiato sulla foto. */
+.badge {
+  position: absolute;
+  right: -8px;
+  top: -16px;
+  transform: rotate(7deg);
+  background: var(--bd-amber);
+  border: var(--bd-border);
+  box-shadow: 4px 4px 0 var(--bd-ink);
+  padding: 10px 12px;
+  font-family: var(--bd-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.badge span {
+  display: block;
+  font-family: var(--bd-text);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  margin-top: 4px;
+}
+
+/* ---------- Nastro ---------- */
+
+.ticker {
+  display: flex;
+  border-block: var(--bd-border);
+  background: var(--bd-ink);
+  color: var(--bd-bone);
+  overflow: hidden;
+  user-select: none;
+  padding-block: 10px;
+}
+
+.tickerTrack {
+  display: flex;
+  flex: none;
+  gap: 32px;
+  padding-right: 32px;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.tickerTrack span {
+  font-family: var(--bd-display);
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.tickerTrack span:nth-child(3n) {
+  color: var(--bd-amber);
+}
+
+/* ---------- Bento della bottega ---------- */
+
+.bento {
+  padding-block: 44px;
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px 24px;
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: var(--bd-border);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--bd-display);
+  font-size: clamp(34px, 6vw, 66px);
+  font-weight: 700;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.sectionNote {
+  color: var(--bd-ink-45);
+  font-size: 14px;
+  max-width: 34ch;
+}
+
+.bentoGrid {
+  display: grid;
+  gap: 14px;
+}
+
+.tile {
+  border: var(--bd-border);
+  background: var(--bd-paper);
+  padding: 20px;
+}
+
+.tileDark {
+  background: var(--bd-ink);
+  color: var(--bd-bone);
+}
+
+.tileEmber {
+  background: var(--bd-ember);
+  color: var(--bd-paper);
+}
+
+.tileNumber {
+  display: block;
+  font-family: var(--bd-display);
+  font-size: clamp(52px, 9vw, 92px);
+  font-weight: 700;
+  line-height: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+
+.tileTitle {
+  margin: 0 0 8px;
+  font-family: var(--bd-display);
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.tileText {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.tileShot {
+  padding: 0;
+  min-height: 220px;
+}
+
+/* Dentro la tessera il segnaposto non ha bordo proprio: quello della tessera
+   basta, due bordi affiancati diventerebbero una riga spessa. */
+.tileShotInner {
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Tagli ---------- */
+
+.cuts {
+  padding-block: 44px;
+}
+
+.cutTable {
+  border: var(--bd-border);
+  background: var(--bd-paper);
+}
+
+.cutRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 16px;
+  padding: 16px 18px;
+  border-bottom: var(--bd-border);
+  transition:
+    background 0.15s linear,
+    color 0.15s linear;
+}
+
+.cutRow:last-child {
+  border-bottom: 0;
+}
+
+.cutRow:hover {
+  background: var(--bd-ink);
+  color: var(--bd-bone);
+}
+
+.cutName {
+  font-family: var(--bd-display);
+  font-size: clamp(24px, 3.6vw, 34px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.cutPrice {
+  font-family: var(--bd-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--bd-ember);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.cutRow:hover .cutPrice {
+  color: var(--bd-amber);
+}
+
+.cutNote {
+  grid-column: 1 / -1;
+  max-width: 62ch;
+  font-size: 15px;
+  color: var(--bd-ink-70);
+}
+
+.cutRow:hover .cutNote {
+  color: rgba(240, 233, 221, 0.75);
+}
+
+.cutsFoot {
+  margin-top: 16px;
+  font-size: 14px;
+  color: var(--bd-ink-45);
+}
+
+/* ---------- Frollatura ---------- */
+
+.aging {
+  background: var(--bd-ink);
+  color: var(--bd-bone);
+  border-block: var(--bd-border);
+}
+
+.agingInner {
+  display: grid;
+  gap: 28px;
+  padding-block: 56px;
+}
+
+.agingTitle {
+  margin: 0 0 16px;
+  font-family: var(--bd-display);
+  font-size: clamp(34px, 6vw, 68px);
+  font-weight: 700;
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+.agingText {
+  margin: 0;
+  max-width: 40ch;
+  color: rgba(240, 233, 221, 0.72);
+}
+
+.agingCounter {
+  font-family: var(--bd-display);
+  font-size: clamp(90px, 20vw, 220px);
+  font-weight: 700;
+  line-height: 0.8;
+  color: var(--bd-amber);
+  font-variant-numeric: tabular-nums;
+}
+
+.agingCounterLabel {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--bd-text);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--bd-bone);
+}
+
+/* Barra di avanzamento della frollatura: la riempie GSAP con lo scorrimento. */
+.agingBar {
+  height: 10px;
+  margin-top: 22px;
+  border: 2px solid var(--bd-bone);
+  overflow: hidden;
+}
+
+.agingFill {
+  height: 100%;
+  width: 100%;
+  background: var(--bd-amber);
+  transform-origin: left;
+}
+
+.agingSteps {
+  display: grid;
+  gap: 14px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.agingStep {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  border-top: 1px solid rgba(240, 233, 221, 0.3);
+  padding-top: 14px;
+}
+
+.agingStepDay {
+  font-family: var(--bd-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--bd-amber);
+}
+
+.agingStepText {
+  margin: 0;
+  font-size: 15px;
+  color: rgba(240, 233, 221, 0.78);
+}
+
+/* ---------- Famiglia ---------- */
+
+.family {
+  padding-block: 48px;
+}
+
+.familyGrid {
+  display: grid;
+  gap: 26px;
+}
+
+.familyText p {
+  margin: 0 0 16px;
+  line-height: 1.75;
+  color: var(--bd-ink-70);
+}
+
+.familyText p:last-child {
+  margin-bottom: 0;
+}
+
+.familyQuote {
+  margin: 24px 0 0;
+  padding: 18px;
+  border: var(--bd-border);
+  background: var(--bd-amber);
+  font-family: var(--bd-display);
+  font-size: clamp(22px, 3.2vw, 30px);
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.familyQuote span {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--bd-text);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0.06em;
+}
+
+.familyShot {
+  aspect-ratio: 3 / 4;
+}
+
+/* ---------- Prenota ---------- */
+
+.book {
+  background: var(--bd-ember);
+  color: var(--bd-paper);
+  border-top: var(--bd-border);
+}
+
+.bookInner {
+  display: grid;
+  gap: 30px;
+  padding-block: 52px;
+}
+
+.bookTitle {
+  margin: 0 0 14px;
+  font-family: var(--bd-display);
+  font-size: clamp(36px, 7vw, 78px);
+  font-weight: 700;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.bookText {
+  margin: 0 0 24px;
+  max-width: 38ch;
+  color: rgba(251, 247, 240, 0.85);
+}
+
+.bookPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 20px;
+  background: var(--bd-ink);
+  color: var(--bd-paper);
+  border: 2px solid var(--bd-ink);
+  box-shadow: 5px 5px 0 rgba(20, 16, 13, 0.35);
+  font-family: var(--bd-display);
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 700;
+  transition:
+    transform 0.15s linear,
+    box-shadow 0.15s linear;
+}
+
+.bookPhone:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0 rgba(20, 16, 13, 0.35);
+}
+
+/* `flex` e non `inline-flex`: la mail deve andare a capo sotto il pulsante,
+   altrimenti gli si appoggia di fianco. */
+.bookMail {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 44px;
+  margin-top: 26px;
+  color: var(--bd-paper);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hours {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  border: 2px solid var(--bd-paper);
+}
+
+.hours div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 14px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(251, 247, 240, 0.4);
+}
+
+.hours div:last-child {
+  border-bottom: 0;
+}
+
+.hours dt {
+  font-family: var(--bd-display);
+  font-size: 19px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.hours dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.hoursNote {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: rgba(251, 247, 240, 0.85);
+}
+
+/* ---------- Barra di chiamata su mobile ---------- */
+
+.callBar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 25;
+  display: flex;
+  gap: 8px;
+  padding: 8px var(--bd-gutter) calc(8px + env(safe-area-inset-bottom));
+  background: var(--bd-ink);
+  border-top: 2px solid var(--bd-amber);
+  will-change: transform;
+}
+
+.callBarPhone {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  background: var(--bd-amber);
+  color: var(--bd-ink);
+  font-family: var(--bd-display);
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.callBarMap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding-inline: 16px;
+  border: 2px solid var(--bd-bone);
+  color: var(--bd-bone);
+  font-family: var(--bd-display);
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  background: var(--bd-ink);
+  color: rgba(240, 233, 221, 0.6);
+  padding-bottom: 76px;
+}
+
+.footerInner {
+  display: grid;
+  gap: 8px;
+  padding-block: 24px;
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--bd-amber);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 700px) {
+  .page {
+    --bd-gutter: 32px;
+  }
+
+  .bentoGrid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+  }
+
+  /* Tessere di peso diverso: la griglia non deve sembrare una tabella. */
+  .tileWide {
+    grid-column: span 2;
+  }
+
+  .tileTall {
+    grid-row: span 2;
+  }
+
+  .agingInner {
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    padding-block: 80px;
+  }
+
+  .familyGrid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .bookInner {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 44px;
+    padding-block: 76px;
+  }
+
+  .footerInner {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+
+  .callBar {
+    display: none;
+  }
+
+  .footer {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .barNav {
+    display: flex;
+  }
+
+  .hero {
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 44px;
+    padding-block: 48px 32px;
+  }
+
+  .heroShot {
+    aspect-ratio: auto;
+    height: min(62vh, 560px);
+  }
+
+  .familyShot {
+    aspect-ratio: auto;
+    height: min(70vh, 620px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .callButton:hover,
+  .bookPhone:hover {
+    transform: none;
+  }
+}

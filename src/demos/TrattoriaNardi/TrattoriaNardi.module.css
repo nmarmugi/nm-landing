@@ -1,0 +1,679 @@
+/**
+ * Landing "Trattoria Nardi". Tema autonomo, come per ogni demo.
+ *
+ * Impianto dalla skill ui-ux-pro-max: pattern "Hero-Centric Design" (apertura
+ * che domina la prima schermata, una sola azione primaria, CTA anche nella
+ * barra), accoppiata "Retro Vintage" Abril Fatface + Merriweather, indicata dal
+ * database proprio per i ristoranti. Palette terracotta e verde presa dal
+ * design system, portata su una carta color panna invece che bianca.
+ *
+ * Nessuno stato iniziale delle animazioni sta in CSS: senza JS la pagina è già
+ * leggibile, gli stati di partenza li imposta GSAP.
+ */
+.page {
+  --tn-cream: #f7f1e3;
+  --tn-paper: #fffaf0;
+  --tn-ink: #22201b;
+  --tn-ink-70: rgba(34, 32, 27, 0.72);
+  --tn-ink-45: rgba(34, 32, 27, 0.45);
+  --tn-line: rgba(34, 32, 27, 0.16);
+  --tn-green: #1f4034;
+  --tn-terra: #a63a1c;
+
+  --tn-display: "Abril Fatface", Georgia, serif;
+  --tn-text: "Merriweather", Georgia, "Times New Roman", serif;
+
+  --tn-gutter: 20px;
+  --tn-max: 1080px;
+
+  background: var(--tn-cream);
+  color: var(--tn-ink);
+  font-family: var(--tn-text);
+  font-size: 16px;
+  line-height: 1.75;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+.page :where(a, button) {
+  cursor: pointer;
+}
+
+.page :where(a, button):focus-visible {
+  outline: 2px solid var(--tn-terra);
+  outline-offset: 3px;
+}
+
+/* Impianto centrato: è la scelta del pattern, e distingue questa pagina dalle
+   altre demo, tutte a due colonne asimmetriche. */
+.inner {
+  width: 100%;
+  max-width: var(--tn-max);
+  margin-inline: auto;
+  padding-inline: var(--tn-gutter);
+}
+
+.label {
+  font-family: var(--tn-text);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Header ---------- */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--tn-cream);
+  border-bottom: 1px solid var(--tn-line);
+}
+
+.barInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-block: 12px;
+}
+
+.brand {
+  font-family: var(--tn-display);
+  font-size: 24px;
+  line-height: 1;
+  color: var(--tn-green);
+}
+
+.barNav {
+  display: none;
+  gap: 26px;
+}
+
+.barNav a {
+  font-size: 15px;
+  color: var(--tn-ink-70);
+  transition: color 0.22s ease;
+}
+
+.barNav a:hover {
+  color: var(--tn-terra);
+}
+
+.callButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 100px;
+  background: var(--tn-green);
+  color: var(--tn-paper);
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition:
+    background 0.22s ease,
+    transform 0.22s ease;
+}
+
+.callButton:hover {
+  background: #163026;
+  transform: translateY(-1px);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  text-align: center;
+  padding-block: 56px 40px;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+  color: var(--tn-terra);
+}
+
+.title {
+  margin: 0 auto;
+  max-width: 14ch;
+  font-family: var(--tn-display);
+  font-size: clamp(46px, 9vw, 104px);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+  color: var(--tn-green);
+}
+
+/* Le righe del titolo sono maschere: le parole salgono da sotto. */
+.titleLine {
+  display: block;
+  /* La maschera taglia a filo della cassa: con line-height sotto 1 le
+     discendenti di g e p ci finiscono sotto. Si allarga in basso e si recupera
+     lo spazio con un margine negativo, così l'interlinea resta quella. */
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
+  overflow: hidden;
+}
+
+.titleLine > span {
+  display: inline-block;
+}
+
+.lead {
+  margin: 26px auto 0;
+  max-width: 52ch;
+  color: var(--tn-ink-70);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 22px;
+  margin-top: 30px;
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border-bottom: 1px solid var(--tn-ink);
+  transition: color 0.22s ease;
+}
+
+.textLink:hover {
+  color: var(--tn-terra);
+}
+
+.heroNote {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  color: var(--tn-ink-45);
+  font-size: 14px;
+}
+
+/* Fascia di foto a tutta larghezza sotto l'apertura: è il "full-bleed" del
+   pattern, e regge la pagina senza spostare il testo dal centro. */
+.heroStrip {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding-inline: var(--tn-gutter);
+  /* Aria sopra e sotto: attaccate alla fascia verde le foto sembrerebbero
+     tagliate da quel bordo invece che appoggiate sulla pagina. */
+  margin-block: 34px 56px;
+}
+
+.shot {
+  position: relative;
+  background: linear-gradient(150deg, #2f4d3f 0%, #6b5330 55%, #22201b 100%);
+  overflow: hidden;
+}
+
+/* Trama a quadretti, appena percepibile: la tovaglia della trattoria, non un
+   gradiente qualunque. */
+.shot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(247, 241, 227, 0.07) 0 1px,
+      transparent 1px 14px
+    ),
+    repeating-linear-gradient(90deg, rgba(247, 241, 227, 0.07) 0 1px, transparent 1px 14px);
+}
+
+.shot::after {
+  content: attr(data-caption);
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247, 241, 227, 0.7);
+}
+
+.stripShot {
+  aspect-ratio: 4 / 3;
+}
+
+/* ---------- Fascia del prezzo fisso ---------- */
+
+.strip {
+  background: var(--tn-green);
+  color: var(--tn-paper);
+  text-align: center;
+}
+
+.stripInner {
+  padding-block: 30px;
+}
+
+.stripPrice {
+  display: block;
+  font-family: var(--tn-display);
+  font-size: clamp(38px, 7vw, 66px);
+  line-height: 1;
+}
+
+.stripText {
+  margin: 12px auto 0;
+  max-width: 46ch;
+  color: rgba(255, 250, 240, 0.8);
+}
+
+/* ---------- Piatto del giorno ---------- */
+
+.today {
+  padding-block: 56px;
+  text-align: center;
+}
+
+.sectionTitle {
+  margin: 0 0 10px;
+  font-family: var(--tn-display);
+  font-size: clamp(32px, 5.4vw, 54px);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--tn-green);
+}
+
+.sectionNote {
+  margin: 0 auto 28px;
+  max-width: 48ch;
+  color: var(--tn-ink-45);
+  font-size: 15px;
+}
+
+.days {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+/* Bottoni veri, con stato dichiarato: la selezione deve arrivare anche a chi
+   naviga da tastiera o con uno screen reader. */
+.day {
+  position: relative;
+  /* La pastiglia sta sotto al testo ma sopra al fondo della pagina: senza
+     isolamento, con z-index negativo finirebbe dietro alla sezione e il testo
+     chiaro resterebbe su carta chiara. */
+  isolation: isolate;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--tn-line);
+  border-radius: 100px;
+  background: transparent;
+  color: var(--tn-ink-70);
+  font-family: var(--tn-text);
+  font-size: 14px;
+  font-weight: 700;
+  transition: color 0.22s ease;
+}
+
+.day:hover {
+  color: var(--tn-ink);
+}
+
+.dayActive {
+  color: var(--tn-paper);
+}
+
+/* Pastiglia che si sposta da un giorno all'altro: la muove Flip. */
+.dayPill {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: 100px;
+  background: var(--tn-terra);
+}
+
+.dish {
+  border: 1px solid var(--tn-line);
+  background: var(--tn-paper);
+  padding: 30px 24px;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.dishDay {
+  margin: 0 0 12px;
+  color: var(--tn-terra);
+}
+
+.dishName {
+  margin: 0 0 14px;
+  font-family: var(--tn-display);
+  font-size: clamp(28px, 4.6vw, 42px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.dishNote {
+  margin: 0 auto 18px;
+  max-width: 44ch;
+  color: var(--tn-ink-70);
+}
+
+.dishPrice {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--tn-green);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Quello che c'è sempre ---------- */
+
+.always {
+  padding-block: 56px;
+  text-align: center;
+}
+
+.alwaysGrid {
+  display: grid;
+  gap: 14px;
+  text-align: left;
+  margin-top: 26px;
+}
+
+.alwaysItem {
+  border-top: 2px solid var(--tn-ink);
+  padding-top: 14px;
+}
+
+.alwaysName {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--tn-display);
+  font-size: 24px;
+  line-height: 1.15;
+}
+
+.alwaysPrice {
+  font-family: var(--tn-text);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--tn-terra);
+  font-variant-numeric: tabular-nums;
+}
+
+.alwaysNote {
+  margin: 8px 0 0;
+  font-size: 15px;
+  color: var(--tn-ink-70);
+}
+
+/* ---------- La casa ---------- */
+
+.house {
+  padding-block: 56px;
+  text-align: center;
+}
+
+.houseText {
+  margin-inline: auto;
+  max-width: 62ch;
+}
+
+.houseText p {
+  margin: 0 0 18px;
+  color: var(--tn-ink-70);
+}
+
+.houseText p:last-child {
+  margin-bottom: 0;
+}
+
+.houseQuote {
+  margin: 34px auto 0;
+  max-width: 30ch;
+  font-family: var(--tn-display);
+  font-size: clamp(24px, 3.6vw, 36px);
+  line-height: 1.2;
+  color: var(--tn-green);
+}
+
+.houseQuoteWho {
+  display: block;
+  margin-top: 14px;
+  font-family: var(--tn-text);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tn-ink-45);
+}
+
+/* ---------- Prenota ---------- */
+
+.book {
+  background: var(--tn-green);
+  color: var(--tn-paper);
+  text-align: center;
+}
+
+.bookInner {
+  padding-block: 60px;
+}
+
+.bookTitle {
+  margin: 0 0 14px;
+  font-family: var(--tn-display);
+  font-size: clamp(32px, 5.6vw, 58px);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.bookText {
+  margin: 0 auto 28px;
+  max-width: 44ch;
+  color: rgba(255, 250, 240, 0.82);
+}
+
+.bookPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 24px;
+  border-radius: 100px;
+  background: var(--tn-terra);
+  color: var(--tn-paper);
+  font-family: var(--tn-display);
+  font-size: clamp(26px, 4vw, 40px);
+  transition:
+    background 0.22s ease,
+    transform 0.22s ease;
+}
+
+.bookPhone:hover {
+  background: #8d2f14;
+  transform: translateY(-2px);
+}
+
+.bookMail {
+  display: block;
+  width: fit-content;
+  margin: 22px auto 0;
+  color: rgba(255, 250, 240, 0.85);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.hours {
+  display: grid;
+  gap: 12px;
+  margin: 36px auto 0;
+  max-width: 520px;
+  text-align: left;
+}
+
+.hours div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 250, 240, 0.28);
+}
+
+.hours dt {
+  font-weight: 700;
+}
+
+.hours dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 250, 240, 0.82);
+}
+
+.hoursNote {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px auto 0;
+  max-width: 52ch;
+  font-size: 14px;
+  color: rgba(255, 250, 240, 0.8);
+}
+
+/* ---------- Barra di chiamata su mobile ---------- */
+
+.callBar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 25;
+  display: flex;
+  gap: 10px;
+  padding: 10px var(--tn-gutter) calc(10px + env(safe-area-inset-bottom));
+  background: var(--tn-paper);
+  border-top: 1px solid var(--tn-line);
+  will-change: transform;
+}
+
+.callBarPhone {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  border-radius: 100px;
+  background: var(--tn-green);
+  color: var(--tn-paper);
+  font-weight: 700;
+}
+
+.callBarMap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding-inline: 18px;
+  border-radius: 100px;
+  border: 1px solid var(--tn-line);
+  color: var(--tn-ink);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  text-align: center;
+  padding-bottom: 84px;
+}
+
+.footerInner {
+  display: grid;
+  gap: 8px;
+  padding-block: 28px;
+  color: var(--tn-ink-45);
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--tn-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 700px) {
+  .page {
+    --tn-gutter: 40px;
+  }
+
+  .hero {
+    padding-block: 84px 48px;
+  }
+
+  .heroStrip {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-block: 44px 76px;
+  }
+
+  .alwaysGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 40px;
+  }
+
+  .today,
+  .always,
+  .house {
+    padding-block: 80px;
+  }
+
+  .callBar {
+    display: none;
+  }
+
+  .footer {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .barNav {
+    display: flex;
+  }
+
+  .heroStrip {
+    max-width: 1240px;
+    margin-inline: auto;
+  }
+
+  .stripShot {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .callButton:hover,
+  .bookPhone:hover {
+    transform: none;
+  }
+}

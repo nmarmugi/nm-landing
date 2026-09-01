@@ -1,0 +1,16 @@
+.wrapper {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  line-height: 2;
+}
+
+.label {
+  margin: 0;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-ink-55);
+}

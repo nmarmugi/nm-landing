@@ -1,0 +1,58 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-36);
+  padding-block: var(--space-36);
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+  max-width: var(--col-text-max);
+}
+
+.paragraph + .paragraph {
+  margin-top: var(--space-22);
+}
+
+.primary {
+  color: var(--color-ink-82);
+}
+
+.secondary {
+  color: var(--color-ink-60);
+}
+
+.metrics {
+  margin-top: var(--space-30);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-14);
+}
+
+/* Alto abbastanza da far leggere una schermata verticale di telefono: a 200px
+   si vedeva una fascia di pixel e nient'altro. */
+.detail {
+  height: 380px;
+}
+
+@media (min-width: 768px) {
+  .body {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-56);
+    padding-block: var(--space-56);
+  }
+
+  .text {
+    min-width: 420px;
+  }
+
+  .details {
+    width: var(--col-side);
+    flex: none;
+  }
+}

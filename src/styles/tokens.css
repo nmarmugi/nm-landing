@@ -1,0 +1,118 @@
+/**
+ * Design token del sistema "notturno tecnico".
+ * Unica fonte di verità per colori, tipografia, spaziature e motion.
+ * Nessun valore grezzo dovrebbe comparire nei CSS Module dei componenti.
+ */
+
+:root {
+  /* ---------- Colore ---------- */
+  --color-bg: #0b0b0c;
+  --color-surface: #0f0f10;
+  --color-ink: #f2f2ef;
+  --color-ink-82: rgba(242, 242, 239, 0.82);
+  --color-ink-70: rgba(242, 242, 239, 0.7);
+  --color-ink-60: rgba(242, 242, 239, 0.6);
+  --color-ink-55: rgba(242, 242, 239, 0.55);
+  --color-ink-45: rgba(242, 242, 239, 0.45);
+  --color-ink-40: rgba(242, 242, 239, 0.4);
+  --color-line: rgba(242, 242, 239, 0.14);
+  --color-line-soft: rgba(242, 242, 239, 0.12);
+  --color-accent: #c8ff3d;
+  --color-accent-ink: #0b0b0c;
+  --color-accent-ink-70: rgba(11, 11, 12, 0.7);
+  --color-accent-ink-35: rgba(11, 11, 12, 0.35);
+
+  --placeholder: repeating-linear-gradient(
+    135deg,
+    #1a1a1c 0 8px,
+    #222225 8px 16px
+  );
+
+  /* Colori "invertiti": usati dai blocchi su fondo accento (contatti, menu). */
+  --color-fg-current: var(--color-ink);
+  --color-bg-current: var(--color-bg);
+
+  /* ---------- Tipografia ---------- */
+  --font-display: "Archivo", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", ui-monospace, monospace;
+
+  /* 9.5vw invece di 11vw: con 11vw la riga più lunga dell'hero ("che si
+     muovono.") va a capo e il titolo diventa di quattro righe invece di tre.
+     Il massimo di 152px resta quello del design. */
+  --fs-hero: clamp(54px, 9.5vw, 152px);
+  --fs-project-title: clamp(44px, 8vw, 104px);
+  --fs-section-title: clamp(40px, 7vw, 88px);
+  --fs-about-title: clamp(40px, 6vw, 72px);
+  --fs-cta-title: clamp(38px, 6.4vw, 82px);
+  --fs-row-title: clamp(34px, 5vw, 62px);
+  --fs-next-title: clamp(30px, 4.2vw, 52px);
+  --fs-menu-item: clamp(44px, 13vw, 58px);
+  --fs-metric: clamp(34px, 3.6vw, 44px);
+  --fs-body-lg: clamp(16px, 1.2vw, 19px);
+  --fs-body: clamp(15px, 1.1vw, 18px);
+  --fs-mono: 12px;
+  --fs-mono-sm: 11px;
+  --fs-mono-xs: 9px;
+
+  --lh-hero: 0.88;
+  --lh-tight: 0.92;
+  --lh-body: 1.65;
+  --lh-body-lg: 1.7;
+
+  --tracking-hero: -0.045em;
+  --tracking-title: -0.04em;
+  --tracking-row: -0.035em;
+  --tracking-metric: -0.03em;
+  --tracking-mono: 0.1em;
+  --tracking-mono-wide: 0.14em;
+
+  /* ---------- Spaziature (scala 4px) ---------- */
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-14: 14px;
+  --space-18: 18px;
+  --space-22: 22px;
+  --space-26: 26px;
+  --space-30: 30px;
+  --space-36: 36px;
+  --space-44: 44px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-80: 80px;
+
+  /* Padding orizzontale di pagina: 48px home, 44px pagine interne, 18px mobile */
+  --gutter: 18px;
+  --gutter-inner: 18px;
+
+  /* ---------- Forme ---------- */
+  --radius-media: 3px;
+  --radius-media-lg: 4px;
+  --radius-pill: 100px;
+
+  /* ---------- Motion ---------- */
+  --duration-fast: 0.35s;
+  --duration-base: 0.6s;
+  --duration-slow: 0.9s;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ---------- Layout ---------- */
+  --col-side: 300px;
+  --col-text-max: 640px;
+  /* Altezza dell'header sticky: serve allo scroll sulle ancore, che altrimenti
+     finirebbero sotto la barra. */
+  --header-h: 62px;
+  --z-header: 100;
+  --z-overlay: 200;
+  --z-transition: 300;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 48px;
+    --gutter-inner: 44px;
+    --header-h: 78px;
+  }
+}
+
+/* Nessuna ombra nel sistema: la profondità viene dai separatori a 1px. */

@@ -1,0 +1,34 @@
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.gapHero {
+  gap: var(--space-44);
+}
+
+.gapProject {
+  gap: var(--space-30) var(--space-56);
+}
+
+.entry {
+  min-width: 0;
+}
+
+.label {
+  margin: 0;
+  font-weight: 500;
+}
+
+.value {
+  margin: 0;
+  color: var(--color-ink-55);
+}
+
+@media (max-width: 480px) {
+  .gapHero,
+  .gapProject {
+    gap: var(--space-22) var(--space-30);
+  }
+}

@@ -1,0 +1,54 @@
+/* Sotto i 768px etichetta e titolo stanno incolonnati: affiancati, il titolo
+   resterebbe schiacciato contro il bordo. */
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-14);
+  padding-block: var(--space-36);
+  padding-inline: var(--gutter-inner);
+  border-top: 1px solid var(--color-line);
+  color: var(--color-ink);
+}
+
+@media (min-width: 768px) {
+  .link {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-22);
+    flex-wrap: wrap;
+  }
+}
+
+.link:focus-visible {
+  outline-offset: -3px;
+}
+
+.title {
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.link:hover .title {
+  color: var(--color-accent);
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.link:hover .arrow {
+  transform: translateX(8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title,
+  .arrow {
+    transition-duration: 0.01ms;
+  }
+
+  .link:hover .arrow {
+    transform: none;
+  }
+}

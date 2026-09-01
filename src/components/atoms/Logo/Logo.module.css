@@ -1,0 +1,18 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tracking-mono);
+  color: var(--color-fg-current);
+}
+
+a.logo:hover {
+  color: var(--color-accent);
+}
+
+:global(.on-accent) a.logo:hover {
+  color: var(--color-accent-ink);
+  opacity: 0.7;
+}

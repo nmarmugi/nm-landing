@@ -1,0 +1,60 @@
+.slot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--placeholder);
+  color: var(--color-ink-40);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-xs);
+  text-align: center;
+}
+
+.radiusMedia {
+  border-radius: var(--radius-media);
+}
+
+.radiusMediaLg {
+  border-radius: var(--radius-media-lg);
+}
+
+.radiusNone {
+  border-radius: 0;
+}
+
+.ratio1610 {
+  aspect-ratio: 16 / 10;
+}
+
+.ratio34 {
+  aspect-ratio: 3 / 4;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Schermate verticali dentro uno slot largo: ritagliarle taglierebbe via il
+   contenuto, quindi si mostrano intere. Fondo trasparente, così ai lati si
+   vede la pagina e non un rettangolo di colore diverso. */
+.fitContain {
+  background: transparent;
+}
+
+.fitContain .image {
+  object-fit: contain;
+}
+
+/* Il file detta l'altezza dello slot: nessun ritaglio e nessuna banda, usato
+   dai video di apertura, che hanno già la proporzione giusta. */
+.fitNatural .image {
+  height: auto;
+  object-fit: fill;
+}
+
+.caption {
+  padding: 0 var(--space-8);
+}

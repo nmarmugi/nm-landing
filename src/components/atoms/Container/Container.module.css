@@ -1,0 +1,15 @@
+.container {
+  width: 100%;
+}
+
+.page {
+  padding-inline: var(--gutter);
+}
+
+.inner {
+  padding-inline: var(--gutter-inner);
+}
+
+.flush {
+  padding-inline: 0;
+}

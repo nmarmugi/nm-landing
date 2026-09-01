@@ -1,0 +1,50 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  /* Stato finale anche senza JS: fondo neon, testo scuro. */
+  color: var(--color-accent-ink);
+  padding-block: var(--space-44);
+  scroll-margin-top: var(--space-14);
+}
+
+/* Strato di fondo animato: sale dal basso quando la sezione entra in viewport. */
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-accent);
+  transform-origin: bottom center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-30);
+}
+
+.label {
+  margin-bottom: var(--space-18);
+}
+
+.line {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: var(--space-64);
+  }
+
+  .content {
+    flex-direction: row;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .label {
+    margin-bottom: var(--space-22);
+  }
+}

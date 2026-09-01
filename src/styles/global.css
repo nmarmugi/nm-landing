@@ -1,0 +1,53 @@
+@import "./tokens.css";
+@import "./reset.css";
+
+/* Le ancore si fermano sotto l'header sticky, non dietro. */
+html {
+  scroll-padding-top: var(--header-h);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  /* `clip` e non `hidden`: `hidden` renderebbe il body un contenitore di
+     scroll e romperebbe il `position: sticky` dell'header. */
+  overflow-x: clip;
+}
+
+/* Focus visibile su tutti gli elementi interattivi: outline 2px accento, offset 3px. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Blocchi su fondo accento: si invertono i due colori correnti in un punto solo,
+   così ogni componente sotto continua a leggere gli stessi token. */
+.on-accent {
+  --color-fg-current: var(--color-accent-ink);
+  --color-bg-current: var(--color-accent);
+}
+
+/* Sui fondi accento l'outline neon sparirebbe: si inverte. */
+:where(.on-accent) :where(a, button, [tabindex]):focus-visible {
+  outline-color: var(--color-accent-ink);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+
+/* Blocca lo scroll quando un overlay è aperto (menu mobile). Va su `html`, non
+   sul body: così la posizione di scorrimento resta dov'era. */
+html[data-scroll-locked="true"] {
+  overflow: hidden;
+}
+
+/* Nota: nessuno stato iniziale delle animazioni vive in CSS.
+   Tutto il testo è visibile senza GSAP; gli stati di partenza sono impostati
+   dentro `useGSAP` (gsap.from / gsap.set), come da handoff. */

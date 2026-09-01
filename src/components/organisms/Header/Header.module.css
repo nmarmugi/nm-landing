@@ -1,0 +1,41 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  /* Fondo pieno: sotto scorre il contenuto della pagina. */
+  background: var(--color-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-18);
+  padding-block: var(--space-14);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.side {
+  display: flex;
+  align-items: center;
+  gap: var(--space-18);
+}
+
+.nav {
+  display: none;
+}
+
+.toggle {
+  display: inline-flex;
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding-block: var(--space-22);
+  }
+
+  .nav {
+    display: block;
+  }
+
+  .toggle {
+    display: none;
+  }
+}

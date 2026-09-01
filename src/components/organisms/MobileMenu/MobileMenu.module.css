@@ -1,0 +1,38 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  /* Stato di partenza dell'animazione: il pannello è già chiuso.
+     Viene aperto da GSAP; senza JS l'overlay non è mai montato. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-18) var(--gutter);
+}
+
+.nav {
+  padding: var(--space-44) var(--gutter) var(--space-30);
+}
+
+.foot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-18);
+  padding: var(--space-30) var(--gutter) var(--space-44);
+}
+
+@media (min-width: 768px) {
+  .overlay {
+    display: none;
+  }
+}

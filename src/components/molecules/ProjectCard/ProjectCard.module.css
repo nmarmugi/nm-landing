@@ -1,0 +1,38 @@
+.card {
+  border-bottom: 1px solid var(--color-line-soft);
+}
+
+.card:last-child {
+  border-bottom: 0;
+}
+
+.link {
+  display: block;
+  padding: var(--space-18);
+  color: var(--color-ink);
+}
+
+.link:focus-visible {
+  outline-offset: -3px;
+}
+
+.media {
+  height: 180px;
+  margin-bottom: var(--space-14);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-14);
+}
+
+.index {
+  color: var(--color-accent);
+}
+
+.summary {
+  display: block;
+  margin-top: var(--space-8);
+}

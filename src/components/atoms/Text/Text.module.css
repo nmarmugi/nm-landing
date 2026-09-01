@@ -1,0 +1,182 @@
+.text {
+  margin: 0;
+  color: var(--color-fg-current);
+}
+
+/* ---------- Varianti display ---------- */
+
+.hero {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-hero);
+  line-height: var(--lh-hero);
+  letter-spacing: var(--tracking-hero);
+  text-transform: uppercase;
+}
+
+.pageTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-project-title);
+  line-height: 0.9;
+  letter-spacing: var(--tracking-hero);
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-section-title);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-hero);
+}
+
+.aboutTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-about-title);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-title);
+}
+
+.ctaTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-cta-title);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-title);
+}
+
+.rowTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-row-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-row);
+}
+
+.nextTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-next-title);
+  line-height: 1;
+  letter-spacing: var(--tracking-row);
+}
+
+.menuItem {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--fs-menu-item);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-title);
+  text-transform: uppercase;
+}
+
+.metric {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-metric);
+  line-height: 1;
+  letter-spacing: var(--tracking-metric);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Varianti di corpo ---------- */
+
+.bodyLg {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-body-lg);
+  line-height: var(--lh-body-lg);
+}
+
+.body {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+/* ---------- Varianti mono ---------- */
+
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--fs-mono);
+  line-height: 1.8;
+}
+
+.monoSmall {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--fs-mono-sm);
+  line-height: 1.4;
+}
+
+.monoLabel {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--fs-mono-sm);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-mono-wide);
+  text-transform: uppercase;
+}
+
+.monoCaption {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--fs-mono-xs);
+  line-height: 1.4;
+}
+
+/* ---------- Toni ---------- */
+
+.toneDefault {
+  color: var(--color-fg-current);
+}
+
+.toneBody {
+  color: var(--color-ink-70);
+}
+
+.toneMuted {
+  color: var(--color-ink-55);
+}
+
+.toneSoft {
+  color: var(--color-ink-45);
+}
+
+.toneFaint {
+  color: var(--color-ink-40);
+}
+
+.toneAccent {
+  color: var(--color-accent);
+}
+
+.toneInherit {
+  color: inherit;
+}
+
+/* Sui blocchi con fondo accento i toni attenuati vanno ricalcolati sul nero. */
+:global(.on-accent) .toneBody,
+:global(.on-accent) .toneMuted,
+:global(.on-accent) .toneSoft,
+:global(.on-accent) .toneFaint {
+  color: var(--color-accent-ink-70);
+}
+
+:global(.on-accent) .toneAccent {
+  color: var(--color-accent-ink);
+}
+
+/* ---------- Modificatori ---------- */
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.alignEnd {
+  text-align: right;
+}
