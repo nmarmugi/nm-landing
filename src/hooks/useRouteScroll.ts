@@ -73,24 +73,33 @@ export function useRouteScroll(): void {
     // nuova che si monta, lasciando la pagina a metà.
     window.scrollTo({ top: 0, behavior: "instant" });
 
-    // I caratteri di sistema e quelli del titolo hanno larghezze diverse: quando
-    // arriva il font vero il testo si ricompone e l'altezza cambia. Si torna in
-    // cima una seconda volta, a meno che nel frattempo l'utente non abbia già
-    // cominciato a scorrere: in quel caso comanda lui.
-    let moved = false;
+    // Nel primo secondo di vita la pagina si assesta: arrivano i font, le
+    // immagini prendono posto, su mobile la barra degli indirizzi si ritrae. In
+    // quella finestra il browser può spostare lo scorrimento, quindi si insiste
+    // finché non è finita. Basta però che l'utente muova la pagina, e si smette
+    // subito: da quel momento comanda lui.
+    let userMoved = false;
+    let frame = 0;
+
     const stop = () => {
-      moved = true;
+      userMoved = true;
     };
-    const options = { once: true, passive: true } as const;
-    window.addEventListener("wheel", stop, options);
-    window.addEventListener("touchmove", stop, options);
+
+    const listener = { once: true, passive: true } as const;
+    window.addEventListener("wheel", stop, listener);
+    window.addEventListener("touchmove", stop, listener);
     window.addEventListener("keydown", stop, { once: true });
 
-    void document.fonts?.ready.then(() => {
-      if (!moved) window.scrollTo({ top: 0, behavior: "instant" });
-    });
+    const startedAt = performance.now();
+    const keepTop = () => {
+      if (userMoved) return;
+      if (window.scrollY !== 0) window.scrollTo({ top: 0, behavior: "instant" });
+      if (performance.now() - startedAt < 1000) frame = requestAnimationFrame(keepTop);
+    };
+    frame = requestAnimationFrame(keepTop);
 
     return () => {
+      if (frame !== 0) cancelAnimationFrame(frame);
       window.removeEventListener("wheel", stop);
       window.removeEventListener("touchmove", stop);
       window.removeEventListener("keydown", stop);

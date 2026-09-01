@@ -8,6 +8,13 @@ import { useGSAP } from "@gsap/react";
 // così nessun componente può usare un plugin non registrato.
 gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText, Flip);
 
+// ScrollTrigger tiene una propria memoria della posizione di scorrimento e la
+// rimette al ricalcolo. Su Chrome mobile il ricalcolo scatta appena la barra
+// degli indirizzi si ritrae, quindi la pagina si apriva già spostata. Su Safari
+// no, perché lì quel ritiro non genera un ridimensionamento.
+ScrollTrigger.config({ ignoreMobileResize: true });
+ScrollTrigger.clearScrollMemory("manual");
+
 export { gsap, ScrollTrigger, SplitText, Flip, useGSAP };
 
 /** Query per `gsap.matchMedia()`: chiavi condivise da tutte le animazioni. */
