@@ -13,6 +13,10 @@
   --color-ink-70: rgba(242, 242, 239, 0.7);
   --color-ink-60: rgba(242, 242, 239, 0.6);
   --color-ink-55: rgba(242, 242, 239, 0.55);
+  /* Soglia minima per il testo piccolo: sul fondo scuro dà 5,2:1, sopra il
+     4,5:1 richiesto da WCAG AA. Sotto questa opacità un testo va usato solo
+     se è grande, dove basta 3:1. */
+  --color-ink-52: rgba(242, 242, 239, 0.52);
   --color-ink-45: rgba(242, 242, 239, 0.45);
   --color-ink-40: rgba(242, 242, 239, 0.4);
   --color-line: rgba(242, 242, 239, 0.14);

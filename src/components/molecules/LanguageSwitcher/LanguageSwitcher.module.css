@@ -10,7 +10,9 @@
   justify-content: center;
   min-width: 26px;
   padding: 4px 2px;
-  color: var(--color-ink-40);
+  /* La lingua non attiva resta un comando cliccabile: va lasciata leggibile,
+     non solo intuibile. */
+  color: var(--color-ink-52);
   text-transform: uppercase;
   transition: color var(--duration-fast) var(--ease-out);
 }

@@ -144,7 +144,9 @@
 }
 
 .toneSoft {
-  color: var(--color-ink-45);
+  /* Serve le etichette mono, che sono piccole: sotto questo valore il
+     contrasto scende sotto il minimo leggibile. */
+  color: var(--color-ink-52);
 }
 
 .toneFaint {
