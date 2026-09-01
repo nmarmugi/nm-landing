@@ -36,10 +36,10 @@
   --font-display: "Archivo", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", ui-monospace, monospace;
 
-  /* 9.5vw invece di 11vw: con 11vw la riga più lunga dell'hero ("che si
-     muovono.") va a capo e il titolo diventa di quattro righe invece di tre.
-     Il massimo di 152px resta quello del design. */
-  --fs-hero: clamp(54px, 9.5vw, 152px);
+  /* Il minimo vale sul telefono più stretto: a 54px la parola più lunga del
+     titolo ("convertono.") non ci stava e andava a capo a metà. Il massimo di
+     152px resta quello del design. */
+  --fs-hero: clamp(42px, 12vw, 152px);
   --fs-project-title: clamp(44px, 8vw, 104px);
   --fs-section-title: clamp(40px, 7vw, 88px);
   --fs-about-title: clamp(40px, 6vw, 72px);

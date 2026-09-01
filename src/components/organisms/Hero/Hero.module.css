@@ -17,6 +17,16 @@
 
 .line {
   display: block;
+  /* Niente sillabazione: le righe le decide il contenuto, non il browser. */
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+/* SplitText rende ogni carattere un inline-block, e ogni inline-block è un
+   punto in cui il browser può andare a capo: senza questo, parole come
+   "convertono." si spezzano a metà su schermi stretti. */
+.title :global(.hero-word) {
+  white-space: nowrap;
 }
 
 .muted {

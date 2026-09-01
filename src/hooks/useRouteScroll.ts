@@ -72,5 +72,28 @@ export function useRouteScroll(): void {
     // CSS, e la scorsa verso l'alto viene interrotta dal contenuto della pagina
     // nuova che si monta, lasciando la pagina a metà.
     window.scrollTo({ top: 0, behavior: "instant" });
+
+    // I caratteri di sistema e quelli del titolo hanno larghezze diverse: quando
+    // arriva il font vero il testo si ricompone e l'altezza cambia. Si torna in
+    // cima una seconda volta, a meno che nel frattempo l'utente non abbia già
+    // cominciato a scorrere: in quel caso comanda lui.
+    let moved = false;
+    const stop = () => {
+      moved = true;
+    };
+    const options = { once: true, passive: true } as const;
+    window.addEventListener("wheel", stop, options);
+    window.addEventListener("touchmove", stop, options);
+    window.addEventListener("keydown", stop, { once: true });
+
+    void document.fonts?.ready.then(() => {
+      if (!moved) window.scrollTo({ top: 0, behavior: "instant" });
+    });
+
+    return () => {
+      window.removeEventListener("wheel", stop);
+      window.removeEventListener("touchmove", stop);
+      window.removeEventListener("keydown", stop);
+    };
   }, [pathname, hash, key, navigationType]);
 }

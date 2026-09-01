@@ -37,6 +37,7 @@ export function Hero({ titleId }: HeroProps) {
         // parola il ritorno a capo cadrebbe fra due lettere qualsiasi.
         const split = SplitText.create(lineElements, {
           type: "words,chars",
+          wordsClass: "hero-word",
           charsClass: "hero-char",
         });
 

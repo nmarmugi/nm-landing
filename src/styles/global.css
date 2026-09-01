@@ -4,6 +4,10 @@
 /* Le ancore si fermano sotto l'header sticky, non dietro. */
 html {
   scroll-padding-top: var(--header-h);
+  /* Chrome, a differenza di Safari, corregge da solo lo scorrimento quando il
+     contenuto sopra cambia altezza: quando arriva il font del titolo la pagina
+     si apriva già spostata di una riga. Qui la posizione la decidiamo noi. */
+  overflow-anchor: none;
 }
 
 body {
