@@ -52,6 +52,10 @@ export function MediaSlot({
       ([entry]) => {
         if (entry.isIntersecting) {
           element.preload = "auto";
+          // `load()` è obbligatorio: cambiare `preload` a video già montato non
+          // fa partire nessuno scaricamento, e su mobile la riproduzione
+          // resterebbe ferma finché il file non finisce in cache per altra via.
+          if (element.readyState === 0) element.load();
           // Il browser può rifiutare la riproduzione: non è un errore da urlare.
           void element.play().catch(() => undefined);
         } else {

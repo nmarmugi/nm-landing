@@ -124,11 +124,14 @@ export function ProjectRow({
           {project.title}
         </Text>
 
+        {/* Il video dell'anteprima entra solo quando la riga è attiva:
+            finché non ci passi sopra è invisibile, e scaricarlo prima
+            vorrebbe dire decine di megabyte che nessuno vedrà. */}
         <div className={styles.previewSlot} aria-hidden="true">
           <div ref={previewRef} className={styles.preview}>
             <MediaSlot
               src={project.preview.src}
-              video={project.preview.video}
+              video={isActive ? project.preview.video : undefined}
               alt={project.preview.alt[lang]}
               caption={previewLabel}
               height="100%"
