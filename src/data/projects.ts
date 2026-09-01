@@ -19,6 +19,7 @@ export const projects: readonly Project[] = [
     stack: "React · Next.js · TypeScript",
     live: { label: "apri la landing ↗", href: "/it/demo/mare-sedici" },
     hero: {
+      src: "/media/mare-sedici-poster.jpg",
       video: "/media/mare-sedici-hero.mp4",
       alt: {
         it: "Registrazione della landing Mare Sedici mentre viene scorsa",
@@ -26,6 +27,7 @@ export const projects: readonly Project[] = [
       },
     },
     preview: {
+      src: "/media/mare-sedici-poster.jpg",
       video: "/media/mare-sedici-hero.mp4",
       alt: {
         it: "Anteprima della landing Mare Sedici",
@@ -90,6 +92,7 @@ export const projects: readonly Project[] = [
     stack: "React · TypeScript · GSAP",
     live: { label: "apri la landing ↗", href: "/it/demo/braceria-doni" },
     hero: {
+      src: "/media/braceria-doni-poster.jpg",
       video: "/media/braceria-doni-hero.mp4",
       alt: {
         it: "Registrazione della landing Braceria Doni mentre viene scorsa",
@@ -97,6 +100,7 @@ export const projects: readonly Project[] = [
       },
     },
     preview: {
+      src: "/media/braceria-doni-poster.jpg",
       video: "/media/braceria-doni-hero.mp4",
       alt: {
         it: "Anteprima della landing Braceria Doni",
@@ -161,6 +165,7 @@ export const projects: readonly Project[] = [
     stack: "React · TypeScript · GSAP Flip",
     live: { label: "apri la landing ↗", href: "/it/demo/trattoria-nardi" },
     hero: {
+      src: "/media/trattoria-nardi-poster.jpg",
       video: "/media/trattoria-nardi-hero.mp4",
       alt: {
         it: "Registrazione della landing Trattoria Nardi mentre viene scorsa",
@@ -168,6 +173,7 @@ export const projects: readonly Project[] = [
       },
     },
     preview: {
+      src: "/media/trattoria-nardi-poster.jpg",
       video: "/media/trattoria-nardi-hero.mp4",
       alt: {
         it: "Anteprima della landing Trattoria Nardi",
@@ -233,6 +239,7 @@ export const projects: readonly Project[] = [
     stack: "React · TypeScript · GSAP",
     live: { label: "apri la landing ↗", href: "/it/demo/gelateria-bruni" },
     hero: {
+      src: "/media/gelateria-bruni-poster.jpg",
       video: "/media/gelateria-bruni-hero.mp4",
       alt: {
         it: "Registrazione della landing Gelateria Bruni mentre viene scorsa",
@@ -240,6 +247,7 @@ export const projects: readonly Project[] = [
       },
     },
     preview: {
+      src: "/media/gelateria-bruni-poster.jpg",
       video: "/media/gelateria-bruni-hero.mp4",
       alt: {
         it: "Anteprima della landing Gelateria Bruni",
@@ -301,6 +309,7 @@ export const projects: readonly Project[] = [
     stack: "React · TypeScript · GSAP",
     live: { label: "apri la landing ↗", href: "/it/demo/forno-salvini" },
     hero: {
+      src: "/media/forno-salvini-poster.jpg",
       video: "/media/forno-salvini-hero.mp4",
       alt: {
         it: "Registrazione della landing Forno Salvini mentre viene scorsa",
@@ -308,6 +317,7 @@ export const projects: readonly Project[] = [
       },
     },
     preview: {
+      src: "/media/forno-salvini-poster.jpg",
       video: "/media/forno-salvini-hero.mp4",
       alt: {
         it: "Anteprima della landing Forno Salvini",
