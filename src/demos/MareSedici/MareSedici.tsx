@@ -154,6 +154,9 @@ export function MareSedici() {
   useDocumentMeta(
     "Mare 16 · Ristorante di pesce a Viareggio",
     "Trenta coperti sulla darsena di Viareggio. Crudi, spaghetto alle arselle, cacciucco il giovedì. Si prenota al 0584 000016.",
+    // Locale inventato per la dimostrazione: fuori dagli indici, o Google
+    // finirebbe per proporlo come un ristorante vero.
+    { noindex: true },
   );
 
   // Movimento della barra di chiamata: identico in tutte le demo.

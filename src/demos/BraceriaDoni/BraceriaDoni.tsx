@@ -75,6 +75,9 @@ export function BraceriaDoni() {
   useDocumentMeta(
     "Braceria Doni · Carne alla brace in Garfagnana",
     "Braceria di famiglia dal 1978. Carne frollata 45 giorni, brace di leccio, quaranta coperti. Si prenota allo 0583 000078.",
+    // Locale inventato per la dimostrazione: fuori dagli indici, o Google
+    // finirebbe per proporlo come un locale vero.
+    { noindex: true },
   );
 
   // Movimento della barra di chiamata: identico in tutte le demo.

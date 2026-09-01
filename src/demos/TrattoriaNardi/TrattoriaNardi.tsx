@@ -105,6 +105,9 @@ export function TrattoriaNardi() {
   useDocumentMeta(
     "Trattoria Nardi · Cucina toscana a Pescia",
     "Trattoria di famiglia dal 1961. Pranzo a prezzo fisso, piatto del giorno, cucina toscana di casa. Si prenota allo 0572 000061.",
+    // Locale inventato per la dimostrazione: fuori dagli indici, o Google
+    // finirebbe per proporlo come un locale vero.
+    { noindex: true },
   );
 
   // Movimento della barra di chiamata: identico in tutte le demo.

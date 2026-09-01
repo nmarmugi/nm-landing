@@ -26,6 +26,17 @@ export function ProjectPage() {
   useDocumentMeta(
     project ? `${project.title} · ${t.meta.title}` : t.project.notFoundTitle,
     project?.paragraphs[lang][0],
+    project
+      ? {
+          canonical: paths.project(lang, project.slug),
+          alternates: {
+            it: paths.project("it", project.slug),
+            en: paths.project("en", project.slug),
+          },
+          image: project.hero.src,
+        }
+      : // Slug inesistente: è una pagina di errore, non deve finire su Google.
+        { noindex: true },
   );
 
   if (!project) {

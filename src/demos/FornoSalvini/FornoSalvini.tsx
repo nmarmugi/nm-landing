@@ -93,6 +93,9 @@ export function FornoSalvini() {
   useDocumentMeta(
     "Forno Salvini · Pane e caffetteria a Lucca",
     "Forno a lievito madre dal 1989. Il pane esce alle 7:10, caffetteria dalle 7. Si prenota la pagnotta allo 0583 000089.",
+    // Locale inventato per la dimostrazione: fuori dagli indici, o Google
+    // finirebbe per proporlo come un locale vero.
+    { noindex: true },
   );
 
   // Movimento della barra di chiamata: identico in tutte le demo.

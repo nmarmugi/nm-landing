@@ -11,7 +11,9 @@ import styles from "./NotFoundPage.module.css";
 export function NotFoundPage() {
   const { t, lang } = useI18n();
 
-  useDocumentMeta(`${t.notFound.title} · ${t.meta.title}`);
+  useDocumentMeta(`${t.notFound.title} · ${t.meta.title}`, undefined, {
+    noindex: true,
+  });
 
   return (
     <Container className={styles.page}>

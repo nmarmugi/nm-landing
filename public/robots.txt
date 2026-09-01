@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Le landing dimostrative restano fuori dai risultati, ma con l'intestazione
+# X-Robots-Tag di `vercel.json`, non con un Disallow: una pagina bloccata qui
+# non verrebbe letta, e Google potrebbe indicizzarne comunque l'indirizzo.
+
+Sitemap: https://www.nicolamarmugi.com/sitemap.xml

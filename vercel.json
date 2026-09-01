@@ -1,4 +1,18 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "nm-landing-self.vercel.app" }],
+      "destination": "https://www.nicolamarmugi.com/$1",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/:lang(it|en)/demo/:slug*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }

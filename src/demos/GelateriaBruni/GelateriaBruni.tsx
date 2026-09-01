@@ -80,6 +80,9 @@ export function GelateriaBruni() {
   useDocumentMeta(
     "Gelateria Bruni · Gelato artigianale a Lucca",
     "Gelateria di famiglia dal 1972. Latte di Porcari, niente basi pronte, vaschette e torte gelato su ordinazione allo 0583 000072.",
+    // Locale inventato per la dimostrazione: fuori dagli indici, o Google
+    // finirebbe per proporlo come un locale vero.
+    { noindex: true },
   );
 
   // Movimento della barra di chiamata: identico in tutte le demo.
