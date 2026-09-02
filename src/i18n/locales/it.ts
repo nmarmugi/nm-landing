@@ -60,6 +60,7 @@ export const it: Dictionary = {
     ],
     portraitCaption: "ritratto",
     portraitAlt: "Nicola Marmugi, ritratto in bianco e nero",
+    portfolioLink: "PORTFOLIO ↗",
     awardsLabel: "PERCORSO",
     awards: [
       "Start-up tech · front end",

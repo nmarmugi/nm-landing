@@ -75,6 +75,8 @@ export interface Dictionary {
     paragraphs: readonly string[];
     portraitCaption: string;
     portraitAlt: string;
+    /** Rimando al portfolio da sviluppatore, che sta su un sito separato. */
+    portfolioLink: string;
     awardsLabel: string;
     awards: readonly string[];
   };

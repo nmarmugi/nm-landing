@@ -3,7 +3,9 @@ import { Container } from "../../atoms/Container";
 import { MediaSlot } from "../../atoms/MediaSlot";
 import { Text } from "../../atoms/Text";
 import { AwardList } from "../../molecules/AwardList";
+import { ExternalLink } from "../../molecules/ExternalLink";
 import { MOTION, MOTION_QUERIES, gsap, useGSAP } from "../../../lib/gsap";
+import { site } from "../../../data/site";
 import { useI18n } from "../../../i18n";
 import styles from "./AboutSection.module.css";
 import type { AboutSectionProps } from "./AboutSection.types";
@@ -92,6 +94,13 @@ export function AboutSection({
           loading="eager"
           className={styles.portrait}
         />
+        <ExternalLink
+          href={site.portfolioUrl}
+          variant="monoLabel"
+          className={styles.portfolioLink}
+        >
+          {t.about.portfolioLink}
+        </ExternalLink>
         <AwardList
           label={t.about.awardsLabel}
           items={t.about.awards}

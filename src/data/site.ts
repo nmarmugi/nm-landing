@@ -7,4 +7,9 @@ export const site = {
   initials: "NM",
   email: "nicolamarmugi1@gmail.com",
   phone: "+39 392 8710699",
+  /**
+   * Il portfolio da sviluppatore, che vive per conto suo. Questo sito racconta
+   * il servizio di landing page, quello mostra il lavoro tecnico per esteso.
+   */
+  portfolioUrl: "https://nm-portfolio-umber.vercel.app/",
 } as const;
