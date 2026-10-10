@@ -2,9 +2,17 @@ import type { Dictionary } from "../i18n.types";
 
 export const it: Dictionary = {
   meta: {
-    title: "Nicola Marmugi · Front end developer",
+    siteName: "Nicola Marmugi",
+    title: "Siti web e landing page a Viareggio e Lucca · Nicola Marmugi",
     description:
-      "Landing page in React e Next.js che convertono: veloci, accessibili, curate fino all'ultimo dettaglio. Front end developer, Viareggio e da remoto.",
+      "Creazione di siti web e landing page a Viareggio, in Versilia e in provincia di Lucca. Pagine veloci, curate e scritte per portare contatti.",
+    aboutTitle: "Chi sono · Sviluppatore web a Viareggio · Nicola Marmugi",
+    aboutDescription:
+      "Sviluppatore web a Viareggio: realizzo siti e landing page in React e Next.js per attività della Versilia, di Lucca e di tutta la provincia.",
+    projectTitle: "{project} · Landing demo · Nicola Marmugi",
+    jobTitle: "Sviluppatore web front end",
+    businessName: "Nicola Marmugi · Siti web e landing page",
+    knowsAbout: ["Siti web", "Landing page", "React", "Next.js", "TypeScript", "SEO locale"],
     routeAnnouncement: "{page} · pagina caricata",
   },
   common: {
@@ -23,19 +31,39 @@ export const it: Dictionary = {
     contact: "Contatti",
   },
   home: {
+    heroKicker: "Siti web e landing page · Viareggio, Lucca e Versilia",
     heroLines: ["Landing page", "che convertono.", "Non solo belle."],
     heroMutedLines: 1,
     intro:
-      "Progetto e sviluppo landing page in React e Next.js: caricamento veloce, testo che porta al contatto, tutto misurabile. Front end developer su prodotti veri, dashboard ed editor visuali in start-up, con tempi di consegna decisi prima di iniziare.",
+      "Progetto e sviluppo siti web e landing page in React e Next.js per attività di Viareggio, della Versilia e della provincia di Lucca: caricamento veloce, testo che porta al contatto, tutto misurabile. Tempi di consegna decisi prima di iniziare.",
     metaStack: {
       label: "Stack",
       value: ["React · Next · TypeScript", "GSAP · Three.js · Tailwind"],
     },
-    metaBase: { label: "Base", value: ["Viareggio, remoto", "UTC+2"] },
-    selectedWork: "LAVORI SELEZIONATI",
+    metaBase: { label: "Base", value: ["Viareggio (LU)", "Versilia, Lucca, remoto"] },
+    selectedWork: "LAVORI SELEZIONATI · DEMO",
     previewLabel: "anteprima",
     ctaTitle: "Parliamone.",
     ctaButton: "SCRIVIMI →",
+  },
+  area: {
+    title: "Siti web a Viareggio, in Versilia e in provincia di Lucca",
+    paragraphs: [
+      "Lavoro da Viareggio e realizzo siti web e landing page per attività della zona: ristoranti, negozi, strutture ricettive, artigiani e professionisti della Versilia e della Lucchesia. Pagine pensate per chi cerca da qui, con indirizzo, orari e numero di telefono dove si vedono subito.",
+      "Che l'attività sia a Lucca, a Camaiore, a Pietrasanta o a Forte dei Marmi, il metodo è lo stesso: un obiettivo per pagina, testi scritti per le ricerche di zona, tempi di caricamento sotto controllo. Fuori provincia si lavora da remoto, con le stesse date di consegna.",
+    ],
+    zonesLabel: "ZONE",
+    zones: [
+      "Viareggio",
+      "Lucca",
+      "Camaiore",
+      "Pietrasanta",
+      "Forte dei Marmi",
+      "Massarosa",
+      "Seravezza",
+      "Capannori",
+      "Garfagnana",
+    ],
   },
   project: {
     back: "← INDIETRO",
@@ -43,7 +71,9 @@ export const it: Dictionary = {
     role: "RUOLO",
     year: "ANNO",
     stack: "STACK",
-    live: "LIVE",
+    openLanding: "APRI LA LANDING ↗",
+    kind: "TIPO",
+    kindValue: "Progetto demo",
     heroCaption: "hero · video o screenshot a tutta larghezza",
     detailCaption: "dettaglio {index}",
     nextProject: "PROGETTO SUCCESSIVO",
@@ -55,12 +85,12 @@ export const it: Dictionary = {
     label: "CHI SONO",
     titleLines: ["Faccio pagine", "che portano", "clienti,", "non solo visite."],
     paragraphs: [
-      "Ho iniziato da freelance, su progetti in outsourcing per aziende di settori diversi: dashboard, form dinamici, autenticazione, rendering lato server. Poi il percorso Edgemony e l'ingresso in una start-up, dove ho costruito editor visuali e interfacce modulari con React, Next.js e TypeScript.",
+      "Sono uno sviluppatore web di Viareggio. Ho iniziato da freelance, su progetti in outsourcing per aziende di settori diversi: dashboard, form dinamici, autenticazione, rendering lato server. Poi il percorso Edgemony e l'ingresso in una start-up, dove ho costruito editor visuali e interfacce modulari con React, Next.js e TypeScript.",
       "Una landing page la tratto come un prodotto: un obiettivo solo, un percorso chiaro verso il contatto, tempi di caricamento sotto controllo e componenti che reggono quando il testo cambia. Le date di consegna le fissiamo prima di iniziare.",
     ],
     portraitCaption: "ritratto",
     portraitAlt: "Nicola Marmugi, ritratto in bianco e nero",
-    portfolioLink: "PORTFOLIO ↗",
+    portfolioLink: "VAI AL PORTFOLIO ↗",
     awardsLabel: "PERCORSO",
     awards: [
       "Start-up tech · front end",

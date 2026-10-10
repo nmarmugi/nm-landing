@@ -96,7 +96,7 @@ export function AboutSection({
         />
         <ExternalLink
           href={site.portfolioUrl}
-          variant="monoLabel"
+          appearance="button"
           className={styles.portfolioLink}
         >
           {t.about.portfolioLink}

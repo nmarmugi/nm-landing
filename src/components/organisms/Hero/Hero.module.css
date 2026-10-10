@@ -6,6 +6,12 @@
   margin: 0;
 }
 
+/* Cosa e dove, prima dello slogan: piccola, ma dentro l'h1. */
+.kicker {
+  display: block;
+  margin-bottom: var(--space-22);
+}
+
 /* Ogni riga è una finestra: i caratteri entrano da sotto senza sbordare. */
 .lineMask {
   display: block;

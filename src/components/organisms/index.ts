@@ -1,4 +1,5 @@
 export * from "./AboutSection";
+export * from "./AreaSection";
 export * from "./ContactCta";
 export * from "./ContactSection";
 export * from "./Header";

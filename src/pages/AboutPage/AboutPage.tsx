@@ -4,18 +4,16 @@ import { ContactSection } from "../../components/organisms/ContactSection";
 import { SECTION_IDS } from "../../hooks/useNavItems";
 import { useDocumentMeta } from "../../hooks/useDocumentMeta";
 import { useI18n } from "../../i18n";
-import { paths } from "../../routes/routes";
+import { aboutMeta } from "../../data/seo";
 
 /** "Chi sono" e "Contatti" vivono nella stessa pagina, come nel design. */
 export function AboutPage() {
-  const { t, lang } = useI18n();
+  const { lang } = useI18n();
   const aboutTitleId = useId();
   const contactTitleId = useId();
 
-  useDocumentMeta(`${t.nav.about} · ${t.meta.title}`, t.about.paragraphs[0], {
-    canonical: paths.about(lang),
-    alternates: { it: paths.about("it"), en: paths.about("en") },
-  });
+  const meta = aboutMeta(lang);
+  useDocumentMeta(meta.title, meta.description, meta);
 
   return (
     <>

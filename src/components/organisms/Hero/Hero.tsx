@@ -21,7 +21,7 @@ export function Hero({ titleId }: HeroProps) {
 
   const lines = t.home.heroLines;
   const firstMutedLine = lines.length - t.home.heroMutedLines;
-  const fullTitle = lines.join(" ");
+  const fullTitle = `${t.home.heroKicker}. ${lines.join(" ")}`;
 
   useGSAP(
     () => {
@@ -78,6 +78,9 @@ export function Hero({ titleId }: HeroProps) {
     <Container as="section" ref={rootRef} className={styles.hero}>
       <Text as="h1" id={titleId} variant="hero" className={styles.title} aria-label={fullTitle}>
         <span aria-hidden="true">
+          <Text as="span" variant="monoLabel" tone="soft" className={styles.kicker} data-hero-delayed>
+            {t.home.heroKicker}
+          </Text>
           {lines.map((line, index) => (
             <span key={line} className={styles.lineMask}>
               <span className={cx(styles.line, index >= firstMutedLine && styles.muted)}>

@@ -23,8 +23,19 @@ export const LANGUAGE_TAGS: Record<Language, string> = {
  */
 export interface Dictionary {
   meta: {
+    /** Firma in coda a ogni titolo di pagina. */
+    siteName: string;
+    /** Titolo e description della home: portano le ricerche locali. */
     title: string;
     description: string;
+    aboutTitle: string;
+    aboutDescription: string;
+    /** Titolo della pagina progetto: "{project}" è il nome del progetto. */
+    projectTitle: string;
+    /** Voci dei dati strutturati schema.org. */
+    jobTitle: string;
+    businessName: string;
+    knowsAbout: readonly string[];
     /** Annuncio per screen reader al cambio pagina: "{page} · pagina caricata". */
     routeAnnouncement: string;
   };
@@ -44,6 +55,8 @@ export interface Dictionary {
     contact: string;
   };
   home: {
+    /** Riga piccola in testa all'h1: dice cosa e dove, prima dello slogan. */
+    heroKicker: string;
     heroLines: readonly string[];
     /** Numero di righe finali rese in colore attenuato. */
     heroMutedLines: number;
@@ -55,13 +68,24 @@ export interface Dictionary {
     ctaTitle: string;
     ctaButton: string;
   };
+  /** Sezione della home sulla zona servita. */
+  area: {
+    title: string;
+    paragraphs: readonly string[];
+    zonesLabel: string;
+    zones: readonly string[];
+  };
   project: {
     back: string;
     counter: string;
     role: string;
     year: string;
     stack: string;
-    live: string;
+    /** Pulsante che apre la landing demo in una nuova scheda. */
+    openLanding: string;
+    /** Etichetta e valore che dichiarano il progetto come dimostrativo. */
+    kind: string;
+    kindValue: string;
     heroCaption: string;
     detailCaption: string;
     nextProject: string;

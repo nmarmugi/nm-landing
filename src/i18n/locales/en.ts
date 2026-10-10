@@ -2,9 +2,17 @@ import type { Dictionary } from "../i18n.types";
 
 export const en: Dictionary = {
   meta: {
-    title: "Nicola Marmugi · Front end developer",
+    siteName: "Nicola Marmugi",
+    title: "Websites in Viareggio, Lucca and Versilia · Nicola Marmugi",
     description:
-      "Landing pages in React and Next.js that convert: fast, accessible, tuned down to the last detail. Front end developer, based in Viareggio and remote.",
+      "Websites and landing pages for businesses in Viareggio, Versilia and the province of Lucca, Tuscany. Fast, carefully built, written to bring enquiries.",
+    aboutTitle: "About · Web developer in Viareggio, Tuscany · Nicola Marmugi",
+    aboutDescription:
+      "Web developer based in Viareggio: I build websites and landing pages in React and Next.js for businesses across Versilia, Lucca and Tuscany.",
+    projectTitle: "{project} · Demo landing page · Nicola Marmugi",
+    jobTitle: "Front end web developer",
+    businessName: "Nicola Marmugi · Websites and landing pages",
+    knowsAbout: ["Websites", "Landing pages", "React", "Next.js", "TypeScript", "Local SEO"],
     routeAnnouncement: "{page} · page loaded",
   },
   common: {
@@ -23,19 +31,39 @@ export const en: Dictionary = {
     contact: "Contact",
   },
   home: {
+    heroKicker: "Websites and landing pages · Viareggio, Lucca, Versilia",
     heroLines: ["Landing pages", "that convert.", "Not just pretty."],
     heroMutedLines: 1,
     intro:
-      "I design and build landing pages in React and Next.js: fast to load, copy that leads to the contact, everything measurable. Front end developer on real products, dashboards and visual editors in a start-up, with delivery dates agreed before the work starts.",
+      "I design and build websites and landing pages in React and Next.js for businesses in Viareggio, Versilia and the province of Lucca: fast to load, copy that leads to the contact, everything measurable. Delivery dates agreed before the work starts.",
     metaStack: {
       label: "Stack",
       value: ["React · Next · TypeScript", "GSAP · Three.js · Tailwind"],
     },
-    metaBase: { label: "Based in", value: ["Viareggio, remote", "UTC+2"] },
-    selectedWork: "SELECTED WORK",
+    metaBase: { label: "Based in", value: ["Viareggio (LU)", "Versilia, Lucca, remote"] },
+    selectedWork: "SELECTED WORK · DEMOS",
     previewLabel: "preview",
     ctaTitle: "Let's talk.",
     ctaButton: "EMAIL ME →",
+  },
+  area: {
+    title: "Websites in Viareggio, Versilia and the province of Lucca",
+    paragraphs: [
+      "I work from Viareggio and build websites and landing pages for local businesses: restaurants, shops, guest houses, craftspeople and professionals across Versilia and the Lucca area. Pages made for people searching nearby, with address, opening hours and phone number in plain sight.",
+      "Whether the business is in Lucca, Camaiore, Pietrasanta or Forte dei Marmi, the method stays the same: one goal per page, copy written for local searches, load times kept in check. Outside the province we work remotely, with the same delivery dates.",
+    ],
+    zonesLabel: "AREAS",
+    zones: [
+      "Viareggio",
+      "Lucca",
+      "Camaiore",
+      "Pietrasanta",
+      "Forte dei Marmi",
+      "Massarosa",
+      "Seravezza",
+      "Capannori",
+      "Garfagnana",
+    ],
   },
   project: {
     back: "← BACK",
@@ -43,7 +71,9 @@ export const en: Dictionary = {
     role: "ROLE",
     year: "YEAR",
     stack: "STACK",
-    live: "LIVE",
+    openLanding: "OPEN THE LANDING PAGE ↗",
+    kind: "TYPE",
+    kindValue: "Demo project",
     heroCaption: "hero · full-width video or screenshot",
     detailCaption: "detail {index}",
     nextProject: "NEXT PROJECT",
@@ -55,12 +85,12 @@ export const en: Dictionary = {
     label: "ABOUT",
     titleLines: ["I build pages", "that bring", "clients,", "not just visits."],
     paragraphs: [
-      "I started freelance, on outsourced projects across very different industries: dashboards, dynamic forms, authentication, server-side rendering. Then the Edgemony programme and a move into a tech start-up, building visual editors and modular interfaces with React, Next.js and TypeScript.",
+      "I'm a web developer based in Viareggio, Tuscany. I started freelance, on outsourced projects across very different industries: dashboards, dynamic forms, authentication, server-side rendering. Then the Edgemony programme and a move into a tech start-up, building visual editors and modular interfaces with React, Next.js and TypeScript.",
       "I treat a landing page like a product: one goal, one clear path to the contact, load times kept in check, and components that hold up when the copy changes. Delivery dates are set before the work starts.",
     ],
     portraitCaption: "portrait",
     portraitAlt: "Nicola Marmugi, black and white portrait",
-    portfolioLink: "PORTFOLIO ↗",
+    portfolioLink: "SEE THE PORTFOLIO ↗",
     awardsLabel: "PATH",
     awards: [
       "Tech start-up · front end",

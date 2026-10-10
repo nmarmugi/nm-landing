@@ -11,7 +11,7 @@ import styles from "./NotFoundPage.module.css";
 export function NotFoundPage() {
   const { t, lang } = useI18n();
 
-  useDocumentMeta(`${t.notFound.title} · ${t.meta.title}`, undefined, {
+  useDocumentMeta(`${t.notFound.title} · ${t.meta.siteName}`, undefined, {
     noindex: true,
   });
 

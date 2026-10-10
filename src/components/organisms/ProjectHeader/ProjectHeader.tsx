@@ -115,20 +115,18 @@ export function ProjectHeader({
             tone="accent"
             gap="project"
             entries={[
+              { key: "kind", label: t.project.kind, value: t.project.kindValue },
               { key: "role", label: t.project.role, value: project.role[lang] },
               { key: "year", label: t.project.year, value: project.year },
               { key: "stack", label: t.project.stack, value: project.stack },
-              {
-                key: "live",
-                label: t.project.live,
-                value: (
-                  <ExternalLink href={project.live.href}>
-                    {project.live.label}
-                  </ExternalLink>
-                ),
-              },
             ]}
           />
+        </div>
+
+        <div data-project-intro className={styles.live}>
+          <ExternalLink href={project.live.href} appearance="button">
+            {t.project.openLanding}
+          </ExternalLink>
         </div>
       </Container>
     </div>

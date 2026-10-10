@@ -11,6 +11,7 @@ import { SECTION_IDS } from "../../hooks/useNavItems";
 import { useDocumentMeta } from "../../hooks/useDocumentMeta";
 import { useI18n } from "../../i18n";
 import { getNextProject, getProjectBySlug, projects } from "../../data/projects";
+import { projectMeta } from "../../data/seo";
 import { paths } from "../../routes/routes";
 import styles from "./ProjectPage.module.css";
 
@@ -23,20 +24,12 @@ export function ProjectPage() {
   const project = getProjectBySlug(slug);
   const backHref = `${paths.home(lang)}#${SECTION_IDS.work}`;
 
+  const meta = project ? projectMeta(lang, project) : undefined;
   useDocumentMeta(
-    project ? `${project.title} · ${t.meta.title}` : t.project.notFoundTitle,
-    project?.paragraphs[lang][0],
-    project
-      ? {
-          canonical: paths.project(lang, project.slug),
-          alternates: {
-            it: paths.project("it", project.slug),
-            en: paths.project("en", project.slug),
-          },
-          image: project.hero.src,
-        }
-      : // Slug inesistente: è una pagina di errore, non deve finire su Google.
-        { noindex: true },
+    meta?.title ?? t.project.notFoundTitle,
+    meta?.description,
+    // Slug inesistente: è una pagina di errore, non deve finire su Google.
+    meta ?? { noindex: true },
   );
 
   if (!project) {

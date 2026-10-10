@@ -1,3 +1,4 @@
+import { Button } from "../../atoms/Button";
 import { Text } from "../../atoms/Text";
 import { VisuallyHidden } from "../../atoms/VisuallyHidden";
 import { useI18n } from "../../../i18n";
@@ -14,9 +15,27 @@ export function ExternalLink({
   href,
   children,
   variant = "mono",
+  appearance = "text",
   className,
 }: ExternalLinkProps) {
   const { t } = useI18n();
+  const notice = <VisuallyHidden> ({t.common.externalLink})</VisuallyHidden>;
+
+  if (appearance === "button") {
+    return (
+      <Button
+        as="a"
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="accent"
+        className={className}
+      >
+        {children}
+        {notice}
+      </Button>
+    );
+  }
 
   return (
     <Text
@@ -29,7 +48,7 @@ export function ExternalLink({
       className={cx(styles.link, className)}
     >
       {children}
-      <VisuallyHidden> ({t.common.externalLink})</VisuallyHidden>
+      {notice}
     </Text>
   );
 }

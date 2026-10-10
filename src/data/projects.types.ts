@@ -32,10 +32,16 @@ export interface Project {
   titleLines: readonly string[];
   /** Metadati brevi mostrati nella riga della home. */
   summary: Localized;
+  /**
+   * Meta description della pagina progetto. Deve aprire dichiarando che è un
+   * progetto demo: i locali sono inventati e non vanno spacciati per clienti.
+   */
+  description: Localized;
   role: Localized;
   year: string;
   stack: string;
-  live: { label: string; href: string };
+  /** Indirizzo della landing demo, aperto dal pulsante in testa al progetto. */
+  live: { href: string };
   hero: ProjectMedia;
   preview: ProjectMedia;
   details: readonly ProjectMedia[];

@@ -7,6 +7,11 @@ export const site = {
   initials: "NM",
   email: "nicolamarmugi1@gmail.com",
   phone: "+39 392 8710699",
+  /** Profili social, per il `sameAs` dei dati strutturati. */
+  socials: [
+    "https://www.instagram.com/nicolamarmugi/",
+    "https://www.facebook.com/nicola.marmugi.9",
+  ],
   /**
    * Il portfolio da sviluppatore, che vive per conto suo. Questo sito racconta
    * il servizio di landing page, quello mostra il lavoro tecnico per esteso.

@@ -32,6 +32,10 @@
   margin-top: var(--space-30);
 }
 
+.live {
+  margin-top: var(--space-30);
+}
+
 @media (min-width: 768px) {
   .bar {
     padding-block: 28px;
@@ -43,6 +47,10 @@
 
   .meta {
     margin-top: var(--space-44);
+  }
+
+  .live {
+    margin-top: var(--space-36);
   }
 }
 
